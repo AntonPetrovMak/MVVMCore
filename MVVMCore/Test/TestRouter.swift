@@ -21,13 +21,13 @@ class TestRouter: MVVMRouter {
   }
   
   func route(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) {
-    guard let route = context as? Context else { return }
+    guard let context = context as? Context else { return }
     guard let baseViewController = baseViewController else {
       assertionFailure("baseViewController is not set")
       return
     }
 
-    switch route {
+    switch context {
     case .pushForward(let count):
       let detailsRouter = TestDetailsRouter()
       let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: false)

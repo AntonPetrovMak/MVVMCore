@@ -18,13 +18,10 @@ class TestDetailsRouter: MVVMRouter {
   var baseViewController: UIViewController?
   
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
-    guard let route = context as? Context else { return }
-    switch route {
+    guard let context = context as? Context else { return }
+    switch context {
     case .setup(let count, let isPresentOption):
-      let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TestDetailsViewController") as! TestDetailsViewController
-         
-      let viewModel = TestDetailsViewModel(with: self, count: count)
-      viewController.viewModel = viewModel
+      let viewController = TestDetailsConfigurator.configureFromStoryboard(with: count, router: self)
       
       if isPresentOption {
         baseVC.present(viewController, animated: true, completion: nil)

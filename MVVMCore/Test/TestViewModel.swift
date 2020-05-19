@@ -16,11 +16,7 @@ protocol TestViewModelInput {
   func presentCounter()
 }
 
-typealias ClosureVoid = () -> ()
-
 protocol TestViewModelOutput: BaseViewModelOutput {
-  //var reload: Observable<Void> { get }
-  var reload: ClosureVoid? { get set }
   var count: Observable<Int> { get }
 }
 
@@ -45,7 +41,6 @@ class TestViewModel: TestViewModelProtocol {
   
   // MARK: - TestViewModelOutput
   
-  var reload: ClosureVoid?
   var count: Observable<Int> = Observable(0)
   var isLoading: Observable<Bool> = Observable(false)
   var error: Observable<String?> = Observable(nil)
@@ -53,11 +48,11 @@ class TestViewModel: TestViewModelProtocol {
   // MARK: - TestViewModelInput
   
   func viewDidLoad() {
-   // isLoading.value = false
+    print("TestViewModel: viewDidLoad")
   }
   
   func viewWillAppear() {
-    
+    print("TestViewModel: viewWillAppear")
   }
   
   func clearData() {
@@ -71,12 +66,12 @@ class TestViewModel: TestViewModelProtocol {
   }
   
   func pushCounter() {
-    let route = TestRouter.Context.pushForward(count: count)
-    router.route(with: route)
+    let context = TestRouter.Context.pushForward(count: count)
+    router.route(with: context)
   }
   
   func presentCounter() {
-    let route = TestRouter.Context.presentForward(count: count)
-    router.route(with: route)
+    let context = TestRouter.Context.presentForward(count: count)
+    router.route(with: context)
   }
 }

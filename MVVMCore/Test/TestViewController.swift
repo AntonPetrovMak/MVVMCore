@@ -64,8 +64,6 @@ class TestViewController: BaseViewController, MVVMViewController {
   }
   
   func bind() {
-    //baseBind(to: viewModel)
-    viewModel.reload = { [weak self] in self?.clearButtonTouched() }
     viewModel.isLoading.observeWithStartingValue(on: self) { [weak self] in self?.setActivityIndicator($0) }
     viewModel.count.observeWithStartingValue(on: self) { [weak self] in self?.countLabel.text = "\($0)" }
   }

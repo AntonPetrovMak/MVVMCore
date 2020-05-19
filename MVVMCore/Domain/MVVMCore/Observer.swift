@@ -43,15 +43,35 @@ public final class Observable<Value> {
     DispatchQueue.main.async { observerBlock(self.value) }
   }
   
+  /// Remove an observer from observers
+  /// - Parameters:
+  ///   - observer: an observer
   public func remove(observer: AnyObject) {
     observers = observers.filter { $0.observer !== observer }
   }
   
+  /// Remove all observer which have lost a reference
+  /// - Parameters:
+  ///   - observer: an observer
+  private func compact() {
+    observers = observers.filter { $0.observer != nil }
+  }
+  
+  /// `maxNilObserversCount` this min number of observers without references which need to determinate in observers array for remove than. It needed that do not lost performance, as perform filter after every notify is excessively. Ths number has been choosed based on experionce and can be change in a future.
+  private let maxNilObserversCount = 5
+  
   private func notifyObservers(_ value: Value) {
+    var count = 0
     for observer in observers {
+      guard observer.observer != nil else {
+        count += 1
+        continue
+      }
       DispatchQueue.main.async {
         observer.block(value)
       }
     }
+    guard count >= maxNilObserversCount else { return }
+    compact()
   }
 }
