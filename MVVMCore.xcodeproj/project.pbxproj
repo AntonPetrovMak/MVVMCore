@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B5A9AF62472D9BD00A60254 /* TestDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AF52472D9BD00A60254 /* TestDetailsRouter.swift */; };
+		2B5A9AF82472D9CA00A60254 /* TestDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AF72472D9CA00A60254 /* TestDetailsViewModel.swift */; };
+		2B5A9AFA2472D9D700A60254 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */; };
+		2B5A9AFC2472D9EB00A60254 /* TestDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AFB2472D9EB00A60254 /* TestDetailsConfigurator.swift */; };
+		2B5A9AFF2472DB8B00A60254 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */; };
+		2B5A9B012472DBD200A60254 /* BaseViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9B002472DBD200A60254 /* BaseViewModelOutput.swift */; };
 		2B62A06F2472860700DB4571 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A06E2472860700DB4571 /* AppDelegate.swift */; };
 		2B62A0712472860700DB4571 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0702472860700DB4571 /* SceneDelegate.swift */; };
 		2B62A0732472860700DB4571 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0722472860700DB4571 /* ViewController.swift */; };
@@ -14,6 +20,14 @@
 		2B62A0782472860800DB4571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B62A0772472860800DB4571 /* Assets.xcassets */; };
 		2B62A07B2472860800DB4571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B62A0792472860800DB4571 /* LaunchScreen.storyboard */; };
 		2B62A0862472860900DB4571 /* MVVMCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0852472860900DB4571 /* MVVMCoreTests.swift */; };
+		2B62A0922472868000DB4571 /* MVVMRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0912472868000DB4571 /* MVVMRouter.swift */; };
+		2B62A0942472869C00DB4571 /* MVVMViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0932472869C00DB4571 /* MVVMViewController.swift */; };
+		2B62A096247286B600DB4571 /* MVVMViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A095247286B600DB4571 /* MVVMViewModel.swift */; };
+		2B62A0992472876E00DB4571 /* TestRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0982472876E00DB4571 /* TestRouter.swift */; };
+		2B62A09B247289C100DB4571 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09A247289C100DB4571 /* TestViewModel.swift */; };
+		2B62A09D247289D200DB4571 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09C247289D100DB4571 /* TestViewController.swift */; };
+		2B62A09F2472921800DB4571 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09E2472921800DB4571 /* Observer.swift */; };
+		2B62A0A12472A35700DB4571 /* TestViewControllerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0A02472A35700DB4571 /* TestViewControllerConfigurator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +41,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B5A9AF52472D9BD00A60254 /* TestDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsRouter.swift; sourceTree = "<group>"; };
+		2B5A9AF72472D9CA00A60254 /* TestDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewModel.swift; sourceTree = "<group>"; };
+		2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
+		2B5A9AFB2472D9EB00A60254 /* TestDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsConfigurator.swift; sourceTree = "<group>"; };
+		2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		2B5A9B002472DBD200A60254 /* BaseViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelOutput.swift; sourceTree = "<group>"; };
 		2B62A06B2472860600DB4571 /* MVVMCore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MVVMCore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B62A06E2472860700DB4571 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2B62A0702472860700DB4571 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +58,14 @@
 		2B62A0812472860900DB4571 /* MVVMCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B62A0852472860900DB4571 /* MVVMCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMCoreTests.swift; sourceTree = "<group>"; };
 		2B62A0872472860900DB4571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2B62A0912472868000DB4571 /* MVVMRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMRouter.swift; sourceTree = "<group>"; };
+		2B62A0932472869C00DB4571 /* MVVMViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMViewController.swift; sourceTree = "<group>"; };
+		2B62A095247286B600DB4571 /* MVVMViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMViewModel.swift; sourceTree = "<group>"; };
+		2B62A0982472876E00DB4571 /* TestRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRouter.swift; sourceTree = "<group>"; };
+		2B62A09A247289C100DB4571 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
+		2B62A09C247289D100DB4571 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		2B62A09E2472921800DB4571 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
+		2B62A0A02472A35700DB4571 /* TestViewControllerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewControllerConfigurator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +86,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B5A9AF42472D99500A60254 /* TestDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2B5A9AF52472D9BD00A60254 /* TestDetailsRouter.swift */,
+				2B5A9AF72472D9CA00A60254 /* TestDetailsViewModel.swift */,
+				2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */,
+				2B5A9AFB2472D9EB00A60254 /* TestDetailsConfigurator.swift */,
+			);
+			path = TestDetails;
+			sourceTree = "<group>";
+		};
+		2B5A9AFD2472DB7C00A60254 /* MVVMBase */ = {
+			isa = PBXGroup;
+			children = (
+				2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */,
+				2B5A9B002472DBD200A60254 /* BaseViewModelOutput.swift */,
+			);
+			path = MVVMBase;
+			sourceTree = "<group>";
+		};
 		2B62A0622472860600DB4571 = {
 			isa = PBXGroup;
 			children = (
@@ -81,6 +129,9 @@
 			children = (
 				2B62A06E2472860700DB4571 /* AppDelegate.swift */,
 				2B62A0702472860700DB4571 /* SceneDelegate.swift */,
+				2B62A0A42472C47500DB4571 /* Domain */,
+				2B62A0972472875C00DB4571 /* Test */,
+				2B5A9AF42472D99500A60254 /* TestDetails */,
 				2B62A0722472860700DB4571 /* ViewController.swift */,
 				2B62A0742472860700DB4571 /* Main.storyboard */,
 				2B62A0772472860800DB4571 /* Assets.xcassets */,
@@ -97,6 +148,37 @@
 				2B62A0872472860900DB4571 /* Info.plist */,
 			);
 			path = MVVMCoreTests;
+			sourceTree = "<group>";
+		};
+		2B62A0902472861D00DB4571 /* MVVMCore */ = {
+			isa = PBXGroup;
+			children = (
+				2B62A0912472868000DB4571 /* MVVMRouter.swift */,
+				2B62A0932472869C00DB4571 /* MVVMViewController.swift */,
+				2B62A095247286B600DB4571 /* MVVMViewModel.swift */,
+				2B62A09E2472921800DB4571 /* Observer.swift */,
+			);
+			path = MVVMCore;
+			sourceTree = "<group>";
+		};
+		2B62A0972472875C00DB4571 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				2B62A0982472876E00DB4571 /* TestRouter.swift */,
+				2B62A09A247289C100DB4571 /* TestViewModel.swift */,
+				2B62A09C247289D100DB4571 /* TestViewController.swift */,
+				2B62A0A02472A35700DB4571 /* TestViewControllerConfigurator.swift */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		2B62A0A42472C47500DB4571 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				2B62A0902472861D00DB4571 /* MVVMCore */,
+				2B5A9AFD2472DB7C00A60254 /* MVVMBase */,
+			);
+			path = Domain;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,8 +282,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2B5A9B012472DBD200A60254 /* BaseViewModelOutput.swift in Sources */,
 				2B62A0732472860700DB4571 /* ViewController.swift in Sources */,
+				2B5A9AF62472D9BD00A60254 /* TestDetailsRouter.swift in Sources */,
+				2B62A09F2472921800DB4571 /* Observer.swift in Sources */,
+				2B62A0942472869C00DB4571 /* MVVMViewController.swift in Sources */,
+				2B62A09B247289C100DB4571 /* TestViewModel.swift in Sources */,
 				2B62A06F2472860700DB4571 /* AppDelegate.swift in Sources */,
+				2B62A0922472868000DB4571 /* MVVMRouter.swift in Sources */,
+				2B62A0992472876E00DB4571 /* TestRouter.swift in Sources */,
+				2B62A0A12472A35700DB4571 /* TestViewControllerConfigurator.swift in Sources */,
+				2B5A9AFA2472D9D700A60254 /* TestDetailsViewController.swift in Sources */,
+				2B62A096247286B600DB4571 /* MVVMViewModel.swift in Sources */,
+				2B62A09D247289D200DB4571 /* TestViewController.swift in Sources */,
+				2B5A9AF82472D9CA00A60254 /* TestDetailsViewModel.swift in Sources */,
+				2B5A9AFF2472DB8B00A60254 /* BaseViewController.swift in Sources */,
+				2B5A9AFC2472D9EB00A60254 /* TestDetailsConfigurator.swift in Sources */,
 				2B62A0712472860700DB4571 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
