@@ -18,7 +18,6 @@ class TestViewController: BaseViewController, MVVMViewController {
     _button.addTarget(self, action: #selector(pushButtonTouched), for: .touchUpInside)
     return _button
   }()
-  
   private lazy var presentButton: UIButton = {
     let _button = UIButton()
     _button.setTitle("Present", for: .normal)
@@ -26,7 +25,6 @@ class TestViewController: BaseViewController, MVVMViewController {
     _button.addTarget(self, action: #selector(presentButtonTouched), for: .touchUpInside)
     return _button
   }()
-  
   private lazy var clearButton: UIButton = {
     let _button = UIButton()
     _button.setTitle("Clear", for: .normal)
@@ -34,11 +32,22 @@ class TestViewController: BaseViewController, MVVMViewController {
     _button.addTarget(self, action: #selector(clearButtonTouched), for: .touchUpInside)
     return _button
   }()
+  private lazy var activityIndicator: UIActivityIndicatorView = {
+    let _indicator = UIActivityIndicatorView()
+    _indicator.hidesWhenStopped = true
+    return _indicator
+  }()
   
   var viewModel: TestViewModelProtocol!
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    setupUI()
+    bind()
+    viewModel.viewDidLoad()
+  }
+  
+  func setupUI() {
     view.backgroundColor = .white
     let stackView = UIStackView(arrangedSubviews: [countLabel, pushButton, presentButton])
     stackView.alignment = .fill
@@ -50,13 +59,14 @@ class TestViewController: BaseViewController, MVVMViewController {
     clearButton.frame = CGRect(x: 0, y: 300, width: 100, height: 50)
     view.addSubview(clearButton)
     
-    bind()
-    viewModel.viewDidLoad()
+    activityIndicator.center = view.center
+    view.addSubview(activityIndicator)
   }
   
   func bind() {
-    baseBind(to: viewModel)
+    //baseBind(to: viewModel)
     viewModel.reload = { [weak self] in self?.clearButtonTouched() }
+    viewModel.isLoading.observeWithStartingValue(on: self) { [weak self] in self?.setActivityIndicator($0) }
     viewModel.count.observeWithStartingValue(on: self) { [weak self] in self?.countLabel.text = "\($0)" }
   }
   
@@ -67,6 +77,9 @@ class TestViewController: BaseViewController, MVVMViewController {
   
   // MARK: - Private
   
+  private func setActivityIndicator(_ isLoading: Bool) {
+    isLoading ? activityIndicator.startAnimating() : activityIndicator.stopAnimating()
+  }
   
   @objc private func pushButtonTouched() {
     viewModel.pushCounter()

@@ -8,10 +8,6 @@
 
 import Foundation
 
-protocol TestDetailsViewModelDelegate: class {
-  func countedDidChanged(_ count: Int)
-}
-
 protocol TestDetailsViewModelInput {
   func increaseCounter()
   func decreaseCounter()
@@ -29,12 +25,10 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   // MARK: - MVVMViewModel
   
   var router: MVVMRouter
-  weak var delegate: TestDetailsViewModelDelegate?
   
-  init(with router: MVVMRouter, count: Int, delegate: TestDetailsViewModelDelegate? = nil) {
+  init(with router: MVVMRouter, count: Observable<Int>) {
     self.router = router
-    self.count = Observable(count)
-    self.delegate = delegate
+    self.count = count
   }
   
   // MARK: - TestDetailsViewModelOutput
@@ -45,12 +39,10 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   
   func increaseCounter() {
     count.value = count.value + 1
-    delegate?.countedDidChanged(count.value)
   }
   
   func decreaseCounter() {
     count.value = count.value - 1
-    delegate?.countedDidChanged(count.value)
   }
   
   func didSelectDismissButton() {

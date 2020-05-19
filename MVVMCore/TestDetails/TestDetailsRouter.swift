@@ -12,7 +12,7 @@ import UIKit
 class TestDetailsRouter: MVVMRouter {
   
   enum Context {
-    case setup(count: Int, isPresentOption: Bool, delegate: TestDetailsViewModelDelegate)
+    case setup(count: Observable<Int>, isPresentOption: Bool)
   }
   
   var baseViewController: UIViewController?
@@ -20,10 +20,10 @@ class TestDetailsRouter: MVVMRouter {
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
     guard let route = context as? Context else { return }
     switch route {
-    case .setup(let count, let isPresentOption, let delegate):
+    case .setup(let count, let isPresentOption):
       let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TestDetailsViewController") as! TestDetailsViewController
          
-      let viewModel = TestDetailsViewModel(with: self, count: count, delegate: delegate)
+      let viewModel = TestDetailsViewModel(with: self, count: count)
       viewController.viewModel = viewModel
       
       if isPresentOption {

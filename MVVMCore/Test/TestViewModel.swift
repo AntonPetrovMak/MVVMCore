@@ -53,7 +53,7 @@ class TestViewModel: TestViewModelProtocol {
   // MARK: - TestViewModelInput
   
   func viewDidLoad() {
-    isLoading.value = true
+   // isLoading.value = false
   }
   
   func viewWillAppear() {
@@ -71,20 +71,12 @@ class TestViewModel: TestViewModelProtocol {
   }
   
   func pushCounter() {
-    let route = TestRouter.Context.pushForward(count: count.value, delegate: self)
+    let route = TestRouter.Context.pushForward(count: count)
     router.route(with: route)
   }
   
   func presentCounter() {
-    let route = TestRouter.Context.presentForward(count: count.value, delegate: self)
+    let route = TestRouter.Context.presentForward(count: count)
     router.route(with: route)
-  }
-}
-
-// MARK: - TestDetailsViewModelDelegate
-
-extension TestViewModel: TestDetailsViewModelDelegate {
-  func countedDidChanged(_ count: Int) {
-    self.count.value = count
   }
 }

@@ -10,8 +10,8 @@ import UIKit
 class TestRouter: MVVMRouter {
   
   enum Context {
-    case pushForward(count: Int, delegate: TestDetailsViewModelDelegate)
-    case presentForward(count: Int, delegate: TestDetailsViewModelDelegate)
+    case pushForward(count: Observable<Int>)
+    case presentForward(count: Observable<Int>)
   }
   
   var baseViewController: UIViewController?
@@ -28,13 +28,13 @@ class TestRouter: MVVMRouter {
     }
 
     switch route {
-    case .pushForward(let count, let delegate):
+    case .pushForward(let count):
       let detailsRouter = TestDetailsRouter()
-      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: false, delegate: delegate)
+      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: false)
       detailsRouter.present(on: baseViewController, context: presentationContext)
-    case .presentForward(let count, let delegate):
+    case .presentForward(let count):
       let detailsRouter = TestDetailsRouter()
-      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: true, delegate: delegate)
+      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: true)
       detailsRouter.present(on: baseViewController, context: presentationContext)
     }
   }
