@@ -21,11 +21,11 @@ class TestDetailsRouter: MVVMRouter {
     guard let context = context as? Context else { return }
     switch context {
     case .setup(let count, let isPresentOption):
-      let viewController = TestDetailsConfigurator.configureFromStoryboard(with: count, router: self)
-      
       if isPresentOption {
+        let viewController = TestDetailsConfigurator.configurePresentStyle(router: self, count: count)
         baseVC.present(viewController, animated: true, completion: nil)
       } else {
+        let viewController = TestDetailsConfigurator.configurePushStyle(router: self, count: count)
         baseVC.navigationController?.pushViewController(viewController, animated: true)
       }
       baseViewController = baseVC

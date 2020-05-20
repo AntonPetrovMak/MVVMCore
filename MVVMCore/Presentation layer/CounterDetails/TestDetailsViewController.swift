@@ -18,6 +18,7 @@ class TestDetailsViewController: BaseViewController, MVVMViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     bind()
+    dismissButton.isHidden = viewModel.isDismissButtonHidden
   }
   
   private func bind() {

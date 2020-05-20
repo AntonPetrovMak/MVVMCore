@@ -9,6 +9,8 @@
 import Foundation
 
 protocol TestDetailsViewModelInput {
+  var isDismissButtonHidden: Bool { get }
+  
   func increaseCounter()
   func decreaseCounter()
   func didSelectDismissButton()
@@ -26,9 +28,10 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   
   var router: MVVMRouter
   
-  init(with router: MVVMRouter, count: Observable<Int>) {
+  init(with router: MVVMRouter, count: Observable<Int>, isDismissButtonHidden: Bool) {
     self.router = router
     self.count = count
+    self.isDismissButtonHidden = isDismissButtonHidden
   }
   
   // MARK: - TestDetailsViewModelOutput
@@ -36,6 +39,8 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   var count: Observable<Int>
   
   // MARK: - TestViewModelInput
+  
+  let isDismissButtonHidden: Bool
   
   func increaseCounter() {
     count.value = count.value + 1

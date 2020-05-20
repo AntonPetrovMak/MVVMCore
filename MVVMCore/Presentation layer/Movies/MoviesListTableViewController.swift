@@ -32,13 +32,15 @@ class MoviesListTableViewController: BaseViewController, MVVMViewController {
   
   private func bind() {
     viewModel.moviesViewModels.observe(on: self) { [weak self] _ in self?.tableView.reloadData() }
-    viewModel.isLoading.observe(on: self) { [weak self] in
-      $0 ? self?.refreshControl.beginRefreshing() : self?.refreshControl.endRefreshing()
-    }
+    viewModel.isLoading.observe(on: self) { [weak self] in self?.setRefreshControl(isLoading: $0) }
   }
   
   @objc private func refresh() {
     viewModel.pullToRefresh()
+  }
+  
+  private func setRefreshControl(isLoading: Bool) {
+    isLoading ? refreshControl.programaticallyBeginRefreshing(in: tableView) : refreshControl.endRefreshing()
   }
   
 }
@@ -57,4 +59,14 @@ extension MoviesListTableViewController: UITableViewDataSource {
     return cell
   }
     
+}
+
+// MARK: - UIRefreshControl helpers
+
+private extension UIRefreshControl {
+    func programaticallyBeginRefreshing(in tableView: UITableView) {
+        beginRefreshing()
+        let offsetPoint = CGPoint.init(x: 0, y: -frame.size.height)
+        tableView.setContentOffset(offsetPoint, animated: true)
+    }
 }
