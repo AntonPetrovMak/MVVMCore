@@ -13,12 +13,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   var window: UIWindow?
   
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-    
-    let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
-    self.window = UIWindow(windowScene: windowScene)
-    let viewController = TestViewControllerConfigurator.configureDefault()
-    let navigationController = UINavigationController(rootViewController: viewController)
-    window?.rootViewController = navigationController
+    // NOTE: - how to set initial view controller
+//    let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
+//    self.window = UIWindow(windowScene: windowScene)
+//    let viewController =  Some controller
+//    let navigationController = UINavigationController(rootViewController: viewController)
+//    window?.rootViewController = navigationController
     window?.makeKeyAndVisible()
 
   }

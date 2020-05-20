@@ -28,16 +28,9 @@ class TestViewModel: TestViewModelProtocol {
   
   var router: MVVMRouter
   
-  init(with router: MVVMRouter, worker: Any?, factory: Any?) {
+  init(with router: MVVMRouter) {
     self.router = router
-    self.worker = worker
-    self.factory = factory
   }
-  
-  // MARK: - Private
-  
-  private var worker: Any?
-  private var factory: Any?
   
   // MARK: - TestViewModelOutput
   

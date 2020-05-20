@@ -11,6 +11,7 @@ import UIKit
 class TestDetailsViewController: BaseViewController, MVVMViewController {
   
   @IBOutlet var countLabel: UILabel!
+  @IBOutlet var dismissButton: UIButton!
   
   var viewModel: TestDetailsViewModelProtocol!
   

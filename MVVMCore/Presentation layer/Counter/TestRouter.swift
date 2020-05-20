@@ -17,7 +17,12 @@ class TestRouter: MVVMRouter {
   var baseViewController: UIViewController?
   
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
-    
+    let viewModel = TestViewModel(with: self)
+    let counterViewController = UIStoryboard(name: "Main", bundle: nil)
+      .instantiateViewController(identifier: "TestViewController") as! TestViewController
+    counterViewController.viewModel = viewModel
+    baseVC.navigationController?.pushViewController(counterViewController, animated: true)
+    baseViewController = baseVC
   }
   
   func route(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) {
