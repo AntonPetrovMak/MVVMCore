@@ -11,7 +11,7 @@ import UIKit
 class MainRouter: MVVMRouter {
   
   public enum Context {
-    case couter
+    case counter(fullMoviesObserver: ObservableEmpty)
     case simpleMovies
     case fullMovies
   }
@@ -23,9 +23,10 @@ class MainRouter: MVVMRouter {
     guard let baseViewController = baseViewController else { return }
     
     switch context {
-    case .couter:
+    case .counter(let fullMoviesObserver):
       let counterRouter = TestRouter()
-      counterRouter.present(on: baseViewController)
+      let context = TestRouter.Context.setup(fullMoviesObserver: fullMoviesObserver)
+      counterRouter.present(on: baseViewController, context: context)
     case .simpleMovies:
       let context = MoviesListRouter.Context.setupSimple
       let moviesRouter = MoviesListRouter()

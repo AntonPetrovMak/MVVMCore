@@ -75,3 +75,16 @@ public final class Observable<Value> {
     compact()
   }
 }
+
+typealias ObservableEmpty = Observable<Void>
+
+extension ObservableEmpty {
+  
+  public convenience init() {
+    self.init(())
+  }
+  
+  public func notify() {
+    value = ()
+  }
+}

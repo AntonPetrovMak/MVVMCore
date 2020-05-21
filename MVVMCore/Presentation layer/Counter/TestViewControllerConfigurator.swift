@@ -9,8 +9,8 @@
 import UIKit
 
 struct TestViewControllerConfigurator {
-  static func configureDefault(router: MVVMRouter) -> TestViewController {
-    let viewModel = TestViewModel(with: router)
+  static func configureDefault(router: MVVMRouter, mainFullMoviesObserver: ObservableEmpty) -> TestViewController {
+    let viewModel = TestViewModel(with: router, mainFullMoviesObserver: mainFullMoviesObserver)
     let viewController = UIStoryboard(name: "Main", bundle: nil)
       .instantiateViewController(identifier: "TestViewController") as! TestViewController
     viewController.viewModel = viewModel

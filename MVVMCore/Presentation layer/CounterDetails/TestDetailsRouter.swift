@@ -12,7 +12,7 @@ import UIKit
 class TestDetailsRouter: MVVMRouter {
   
   enum Context {
-    case setup(count: Observable<Int>, isPresentOption: Bool)
+    case setup(count: Observable<Int>, isPresentOption: Bool, fullMoviesObserver: ObservableEmpty?)
   }
   
   weak var baseViewController: UIViewController?
@@ -20,12 +20,12 @@ class TestDetailsRouter: MVVMRouter {
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
     guard let context = context as? Context else { return }
     switch context {
-    case .setup(let count, let isPresentOption):
+    case .setup(let count, let isPresentOption, let fullMoviesObserver):
       if isPresentOption {
-        let viewController = TestDetailsConfigurator.configurePresentStyle(router: self, count: count)
+        let viewController = TestDetailsConfigurator.configurePresentStyle(router: self, count: count, mainFullMoviesObserver: fullMoviesObserver)
         baseVC.present(viewController, animated: true, completion: nil)
       } else {
-        let viewController = TestDetailsConfigurator.configurePushStyle(router: self, count: count)
+        let viewController = TestDetailsConfigurator.configurePushStyle(router: self, count: count, mainFullMoviesObserver: fullMoviesObserver)
         baseVC.navigationController?.pushViewController(viewController, animated: true)
       }
       baseViewController = baseVC

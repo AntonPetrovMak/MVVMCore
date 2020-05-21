@@ -7,9 +7,19 @@
 //
 
 import UIKit
-class TestRouter: MVVMRouter {
+
+protocol TestRouterDataSump {
+  var fullMoviesObserver: ObservableEmpty? { get set }
+}
+
+class TestRouter: MVVMRouter, TestRouterDataSump {
+  
+  // MARK: TestRouterDataSump
+  
+  var fullMoviesObserver: ObservableEmpty?
   
   enum Context {
+    case setup(fullMoviesObserver: ObservableEmpty)
     case pushForward(count: Observable<Int>)
     case presentForward(count: Observable<Int>)
   }
@@ -17,12 +27,20 @@ class TestRouter: MVVMRouter {
   weak var baseViewController: UIViewController?
   
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
-    let viewModel = TestViewModel(with: self)
-    let counterViewController = UIStoryboard(name: "Main", bundle: nil)
-      .instantiateViewController(identifier: "TestViewController") as! TestViewController
-    counterViewController.viewModel = viewModel
-    baseVC.navigationController?.pushViewController(counterViewController, animated: true)
-    baseViewController = baseVC
+    guard let context = context as? Context else { return }
+    
+    switch context {
+    case .setup(let fullMoviesObserver):
+      self.fullMoviesObserver = fullMoviesObserver
+      let viewModel = TestViewModel(with: self, mainFullMoviesObserver: fullMoviesObserver)
+      let counterViewController = UIStoryboard(name: "Main", bundle: nil)
+        .instantiateViewController(identifier: "TestViewController") as! TestViewController
+      counterViewController.viewModel = viewModel
+      baseVC.navigationController?.pushViewController(counterViewController, animated: true)
+      baseViewController = baseVC
+    default: ()
+    }
+    
   }
   
   func route(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) {
@@ -35,12 +53,13 @@ class TestRouter: MVVMRouter {
     switch context {
     case .pushForward(let count):
       let detailsRouter = TestDetailsRouter()
-      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: false)
+      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: false, fullMoviesObserver: fullMoviesObserver)
       detailsRouter.present(on: baseViewController, context: presentationContext)
     case .presentForward(let count):
       let detailsRouter = TestDetailsRouter()
-      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: true)
+      let presentationContext = TestDetailsRouter.Context.setup(count: count, isPresentOption: true, fullMoviesObserver: fullMoviesObserver)
       detailsRouter.present(on: baseViewController, context: presentationContext)
+    default: ()
     }
   }
   

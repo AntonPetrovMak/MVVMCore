@@ -16,18 +16,21 @@ protocol MainViewModelInput {
 
 protocol MainViewModelProtocol: MainViewModelInput { }
 
-struct MainViewModel: MainViewModelProtocol, MVVMViewModel {
+final class MainViewModel: MainViewModelProtocol, MVVMViewModel {
   
   let router: MVVMRouter
   
+  let fullMoviesObserver = ObservableEmpty()
+  
   init(router: MVVMRouter) {
     self.router = router
+    fullMoviesObserver.observe(on: self) { [weak self] in self?.showFullMovies() }
   }
   
   // MARK: - MainViewModelInput
   
   func showCounter() {
-    let context = MainRouter.Context.couter
+    let context = MainRouter.Context.counter(fullMoviesObserver: fullMoviesObserver)
     router.route(with: context)
   }
   

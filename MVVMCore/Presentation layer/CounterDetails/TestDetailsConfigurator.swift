@@ -10,22 +10,23 @@ import UIKit
 
 struct TestDetailsConfigurator {
   
-  static func configurePresentStyle(router: MVVMRouter, count: Observable<Int>) -> TestDetailsViewController {
-    return configureFromStoryboard(router: router, count: count, isDismissButtonHidden: false)
+  static func configurePresentStyle(router: MVVMRouter, count: Observable<Int>, mainFullMoviesObserver: ObservableEmpty?) -> TestDetailsViewController {
+    return configureFromStoryboard(router: router, count: count, isDismissButtonHidden: false, mainFullMoviesObserver: mainFullMoviesObserver)
   }
   
-  static func configurePushStyle(router: MVVMRouter, count: Observable<Int>) -> TestDetailsViewController {
-    return configureFromStoryboard(router: router, count: count, isDismissButtonHidden: true)
+  static func configurePushStyle(router: MVVMRouter, count: Observable<Int>, mainFullMoviesObserver: ObservableEmpty?) -> TestDetailsViewController {
+    return configureFromStoryboard(router: router, count: count, isDismissButtonHidden: true, mainFullMoviesObserver: mainFullMoviesObserver)
   }
   
   // MARK: - Private
   
   private static func configureFromStoryboard(router: MVVMRouter,
                                               count: Observable<Int>,
-                                              isDismissButtonHidden: Bool) -> TestDetailsViewController {
+                                              isDismissButtonHidden: Bool,
+                                              mainFullMoviesObserver: ObservableEmpty?) -> TestDetailsViewController {
     let viewController = UIStoryboard(name: "Main", bundle: nil)
       .instantiateViewController(identifier: "TestDetailsViewController") as! TestDetailsViewController
-    let viewModel = TestDetailsViewModel(with: router, count: count, isDismissButtonHidden: isDismissButtonHidden)
+    let viewModel = TestDetailsViewModel(with: router, count: count, isDismissButtonHidden: isDismissButtonHidden, mainFullMoviesObserver: mainFullMoviesObserver)
     viewController.viewModel = viewModel
     return viewController
   }
