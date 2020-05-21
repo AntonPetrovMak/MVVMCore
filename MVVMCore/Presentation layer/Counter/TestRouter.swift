@@ -14,7 +14,7 @@ class TestRouter: MVVMRouter {
     case presentForward(count: Observable<Int>)
   }
   
-  var baseViewController: UIViewController?
+  weak var baseViewController: UIViewController?
   
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
     let viewModel = TestViewModel(with: self)

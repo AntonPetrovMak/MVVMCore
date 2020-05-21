@@ -16,7 +16,7 @@ class MoviesListRouter: MVVMRouter {
     case setupFull
   }
   
-  var baseViewController: UIViewController?
+  weak var baseViewController: UIViewController?
   
   func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
     guard let context = context as? Context else { return }

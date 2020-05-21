@@ -42,7 +42,6 @@ protocol MVVMRouter {
   func dismiss(animated: Bool, context: Any?, completion: ((Bool) -> Void)?)
 }
 
-
 extension MVVMRouter {
   
   /// Convenience method to use default values for parameters, which rarely used

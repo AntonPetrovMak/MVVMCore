@@ -16,7 +16,7 @@ class MainRouter: MVVMRouter {
     case fullMovies
   }
   
-  var baseViewController: UIViewController?
+  weak var baseViewController: UIViewController?
   
   func route(with context: Any?, animated: Bool = true, completion: ((Bool) -> Void)? = nil) {
     guard let context = context as? Context else { return }
