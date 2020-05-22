@@ -12,19 +12,6 @@ import UIKit
 /// The protocol for the router in MVVM+Router architecture
 protocol MVVMRouter {
   
-  /// The view controller which is used to present the current one
-  var baseViewController: UIViewController? { get set }
-  
-  
-  /// This method should be used as an entry point for presenting the VC for particular router
-  ///
-  /// - Parameters:
-  ///   - baseVC: the base VC
-  ///   - animated: animated presenting or not
-  ///   - context: optional context
-  ///   - completion: the closure to be invoked in the end of presentation with result (was presented or not)
-  func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?)
-  
   /// This method should be used to present next view controller as a result some action
   ///
   /// - Parameters:
@@ -43,11 +30,6 @@ protocol MVVMRouter {
 }
 
 extension MVVMRouter {
-  
-  /// Convenience method to use default values for parameters, which rarely used
-  func present(on baseVC: UIViewController, animated: Bool = true, context: Any? = nil, completion: ((Bool) -> Void)? = nil) {
-    self.present(on: baseVC, animated: animated, context: context, completion: completion)
-  }
   
   /// Convenience method to use default values for parameters, which rarely used
   func route(with context: Any?, animated: Bool = true, completion: ((Bool) -> Void)? = nil) {

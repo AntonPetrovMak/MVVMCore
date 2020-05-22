@@ -27,7 +27,7 @@ struct MainViewModel: MainViewModelProtocol, MVVMViewModel {
   // MARK: - MainViewModelInput
   
   func showCounter() {
-    let context = MainRouter.Context.couter
+    let context = MainRouter.Context.counter
     router.route(with: context)
   }
   

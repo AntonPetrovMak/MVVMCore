@@ -59,12 +59,12 @@ class TestViewModel: TestViewModelProtocol {
   }
   
   func pushCounter() {
-    let context = TestRouter.Context.pushForward(count: count)
+    let context = CounterRouter.Context.pushForward(count: count)
     router.route(with: context)
   }
   
   func presentCounter() {
-    let context = TestRouter.Context.presentForward(count: count)
+    let context = CounterRouter.Context.presentForward(count: count)
     router.route(with: context)
   }
 }

@@ -18,18 +18,17 @@ class MoviesListRouter: MVVMRouter {
   
   weak var baseViewController: UIViewController?
   
-  func present(on baseVC: UIViewController, animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
+  func present(animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
     guard let context = context as? Context else { return }
     
     switch context {
     case .setupSimple:
       let moviesViewController = MoviesListControllerConfigurator.configureSimpleMovies(router: self)
-      baseVC.navigationController?.pushViewController(moviesViewController, animated: true)
+      baseViewController?.navigationController?.pushViewController(moviesViewController, animated: true)
     case .setupFull:
       let moviesViewController = MoviesListControllerConfigurator.configureFullMovies(router: self)
-      baseVC.navigationController?.pushViewController(moviesViewController, animated: true)
+      baseViewController?.navigationController?.pushViewController(moviesViewController, animated: true)
     }
-    baseViewController = baseVC
   }
   
   func route(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) {
