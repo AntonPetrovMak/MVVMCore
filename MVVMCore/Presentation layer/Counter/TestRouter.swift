@@ -32,7 +32,7 @@ class TestRouter: MVVMRouter, TestRouterDataSump {
     switch context {
     case .setup(let fullMoviesObserver):
       self.fullMoviesObserver = fullMoviesObserver
-      let viewModel = TestViewModel(with: self, mainFullMoviesObserver: fullMoviesObserver)
+      let viewModel = TestViewModel(with: self)
       let counterViewController = UIStoryboard(name: "Main", bundle: nil)
         .instantiateViewController(identifier: "TestViewController") as! TestViewController
       counterViewController.viewModel = viewModel

@@ -28,11 +28,8 @@ class TestViewModel: TestViewModelProtocol {
   
   var router: MVVMRouter
   
-  private let mainFullMoviesObserver: ObservableEmpty
-  
-  init(with router: MVVMRouter, mainFullMoviesObserver: ObservableEmpty) {
+  init(with router: MVVMRouter) {
     self.router = router
-    self.mainFullMoviesObserver = mainFullMoviesObserver
   }
   
   // MARK: - TestViewModelOutput
