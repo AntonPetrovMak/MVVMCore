@@ -10,8 +10,7 @@ import UIKit
 
 protocol MainCoordinatorProtocol: Coordinator {
   func showCounter()
-  func showSimpleMovies()
-  func showFullMovies()
+  func showMovies(with type: MoviesRouter.Context)
 }
 
 class MainCoordinator: BaseCoordinator, MainCoordinatorProtocol {
@@ -33,11 +32,12 @@ class MainCoordinator: BaseCoordinator, MainCoordinatorProtocol {
     start(coordinator: coordinator)
   }
   
-  func showSimpleMovies() {
-    
-  }
-  
-  func showFullMovies() {
-    
+  func showMovies(with type: MoviesRouter.Context) {
+    let router = MoviesRouter(factory: MoviesFactory())
+    router.type = type
+    let coordinator = MoviesCoordinator(window: window)
+    coordinator.router = router
+    router.coordinator = coordinator
+    start(coordinator: coordinator)
   }
 }

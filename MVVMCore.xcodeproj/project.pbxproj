@@ -11,7 +11,6 @@
 		2B5A9AFA2472D9D700A60254 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */; };
 		2B5A9AFF2472DB8B00A60254 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */; };
 		2B5A9B012472DBD200A60254 /* BaseViewModelOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9B002472DBD200A60254 /* BaseViewModelOutput.swift */; };
-		2B5A9B052474241400A60254 /* MoviesListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9B042474241400A60254 /* MoviesListRouter.swift */; };
 		2B5A9B072474243300A60254 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9B062474243300A60254 /* MoviesListViewModel.swift */; };
 		2B5A9B092474245C00A60254 /* MoviesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9B082474245C00A60254 /* MoviesListTableViewController.swift */; };
 		2B5A9B0E2474267500A60254 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9B0D2474267500A60254 /* Movie.swift */; };
@@ -36,7 +35,6 @@
 		2B62A09B247289C100DB4571 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09A247289C100DB4571 /* TestViewModel.swift */; };
 		2B62A09D247289D200DB4571 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09C247289D100DB4571 /* TestViewController.swift */; };
 		2B62A09F2472921800DB4571 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09E2472921800DB4571 /* Observer.swift */; };
-		2BDAB14C2475222400B4E750 /* MoviesListControllerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BDAB14B2475222400B4E750 /* MoviesListControllerConfigurator.swift */; };
 		5B54127224769292001DE013 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B54127124769292001DE013 /* Coordinator.swift */; };
 		5B5412742476A69A001DE013 /* BaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5412732476A69A001DE013 /* BaseCoordinator.swift */; };
 		5B5412762476BC24001DE013 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B5412752476BC24001DE013 /* MainCoordinator.swift */; };
@@ -67,7 +65,6 @@
 		2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
 		2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		2B5A9B002472DBD200A60254 /* BaseViewModelOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewModelOutput.swift; sourceTree = "<group>"; };
-		2B5A9B042474241400A60254 /* MoviesListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListRouter.swift; sourceTree = "<group>"; };
 		2B5A9B062474243300A60254 /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
 		2B5A9B082474245C00A60254 /* MoviesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListTableViewController.swift; sourceTree = "<group>"; };
 		2B5A9B0D2474267500A60254 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
@@ -96,7 +93,6 @@
 		2B62A09A247289C100DB4571 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		2B62A09C247289D100DB4571 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		2B62A09E2472921800DB4571 /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
-		2BDAB14B2475222400B4E750 /* MoviesListControllerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListControllerConfigurator.swift; sourceTree = "<group>"; };
 		5B54127124769292001DE013 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5B5412732476A69A001DE013 /* BaseCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCoordinator.swift; sourceTree = "<group>"; };
 		5B5412752476BC24001DE013 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
@@ -153,10 +149,8 @@
 			children = (
 				2B5A9B172474324C00A60254 /* Factories */,
 				2B5A9B162474321C00A60254 /* Cells */,
-				2B5A9B042474241400A60254 /* MoviesListRouter.swift */,
 				2B5A9B062474243300A60254 /* MoviesListViewModel.swift */,
 				2B5A9B082474245C00A60254 /* MoviesListTableViewController.swift */,
-				2BDAB14B2475222400B4E750 /* MoviesListControllerConfigurator.swift */,
 			);
 			path = Movies;
 			sourceTree = "<group>";
@@ -485,7 +479,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B5A9B052474241400A60254 /* MoviesListRouter.swift in Sources */,
 				2B5A9B012472DBD200A60254 /* BaseViewModelOutput.swift in Sources */,
 				2B5A9B072474243300A60254 /* MoviesListViewModel.swift in Sources */,
 				2B62A09F2472921800DB4571 /* Observer.swift in Sources */,
@@ -494,7 +487,6 @@
 				5B5412792476C3DE001DE013 /* MainFactory.swift in Sources */,
 				2B5A9B092474245C00A60254 /* MoviesListTableViewController.swift in Sources */,
 				2B5A9B25247514F900A60254 /* MainViewModel.swift in Sources */,
-				2BDAB14C2475222400B4E750 /* MoviesListControllerConfigurator.swift in Sources */,
 				2B62A09B247289C100DB4571 /* TestViewModel.swift in Sources */,
 				2B62A06F2472860700DB4571 /* AppDelegate.swift in Sources */,
 				5B917C912477B5C500DC477E /* MainRouter.swift in Sources */,

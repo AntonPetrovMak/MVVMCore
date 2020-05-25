@@ -36,16 +36,9 @@ class MainRouter: BaseRouter {
     case .counter:
       coordinator?.showCounter()
     case .simpleMovies:
-      coordinator?.showSimpleMovies()
-//      let context = MoviesListRouter.Context.setupSimple
-//      let moviesRouter = MoviesListRouter()
-//      moviesRouter.baseViewController = mainRouting.navigationController?.viewControllers.first
-//      moviesRouter.present(animated: true, context: context)
+      coordinator?.showMovies(with: .setupSimple)
     case .fullMovies:
-      coordinator?.showFullMovies()
-//      let context = MoviesListRouter.Context.setupFull
-//      let moviesRouter = MoviesListRouter()
-//      moviesRouter.present(animated: true, context: context)
+      coordinator?.showMovies(with: .setupFull)
     }
   }
 }

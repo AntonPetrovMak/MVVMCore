@@ -11,14 +11,7 @@ import UIKit
 protocol MoviesCoordinatorProtocol: Coordinator { }
 
 class MoviesCoordinator: BaseCoordinator, MoviesCoordinatorProtocol {
-  private let router: BaseRouter
-  
-  override init(window: UIWindow) {
-    let router = MoviesRouter(factory: MoviesFactory())
-    self.router = router
-    super.init(window: window)
-    router.coordinator = self
-  }
+  var router: BaseRouter!
   
   override func start() {
     router.route(with: window)
