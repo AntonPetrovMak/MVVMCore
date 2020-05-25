@@ -19,6 +19,12 @@ struct MoviesListNetworkStore: MoviesListStoreProtocol {
   }
 }
 
+struct MoviesListMockStore: MoviesListStoreProtocol {
+  func loadMoviesList(serverName: String, completion: @escaping (Result<[Movie], Error>) -> ()) {
+    completion(.success(movies))
+  }
+}
+
 private let movies = [Movie(name: "The Lion King",
                             distributor: "Disney",
                             worldwideGross: "$5,943,394",

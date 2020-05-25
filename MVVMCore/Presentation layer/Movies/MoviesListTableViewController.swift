@@ -13,6 +13,7 @@ class MoviesListTableViewController: BaseViewController, MVVMViewController {
   var viewModel: MoviesListViewModelProtocol!
   
   @IBOutlet var tableView: UITableView!
+  @IBOutlet var searchBar: UISearchBar!
   private let refreshControl = UIRefreshControl()
   
   override func viewDidLoad() {
@@ -28,6 +29,7 @@ class MoviesListTableViewController: BaseViewController, MVVMViewController {
     tableView.register(UINib(nibName: "MovieTableViewCell", bundle: nil), forCellReuseIdentifier: "MovieTableViewCell")
     refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     tableView.refreshControl = refreshControl
+    searchBar.delegate = self
   }
   
   private func bind() {
@@ -69,4 +71,14 @@ private extension UIRefreshControl {
         let offsetPoint = CGPoint.init(x: 0, y: -frame.size.height)
         tableView.setContentOffset(offsetPoint, animated: true)
     }
+}
+
+// MARK:
+
+extension MoviesListTableViewController: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    guard let updatedString = (searchBar.text as NSString?)?.replacingCharacters(in: range, with: text) else { return true }
+    viewModel.filterChanged(updatedString)
+    return true
+  }
 }

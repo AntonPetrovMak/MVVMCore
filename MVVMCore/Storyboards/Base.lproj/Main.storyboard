@@ -179,7 +179,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbG-zp-Ggo">
-                                <rect key="frame" x="150" y="606" width="115" height="30"/>
+                                <rect key="frame" x="149.5" y="606" width="115" height="30"/>
                                 <state key="normal" title="Push Full Movies"/>
                                 <connections>
                                     <action selector="fullMoviesButton" destination="BYZ-38-t0r" eventType="touchUpInside" id="g4q-cW-w4T"/>
@@ -216,20 +216,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Za3-hQ-zss">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="lLu-PN-SRL">
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="k5y-1q-Jlv" firstAttribute="trailing" secondItem="Za3-hQ-zss" secondAttribute="trailing" id="1VM-s3-6Bs"/>
+                            <constraint firstItem="lLu-PN-SRL" firstAttribute="leading" secondItem="k5y-1q-Jlv" secondAttribute="leading" id="7cv-9Z-NcI"/>
+                            <constraint firstItem="lLu-PN-SRL" firstAttribute="top" secondItem="k5y-1q-Jlv" secondAttribute="top" id="TG9-0K-3bG"/>
                             <constraint firstItem="k5y-1q-Jlv" firstAttribute="bottom" secondItem="Za3-hQ-zss" secondAttribute="bottom" id="ULv-Lz-n5U"/>
+                            <constraint firstItem="lLu-PN-SRL" firstAttribute="trailing" secondItem="k5y-1q-Jlv" secondAttribute="trailing" id="XxX-eh-w9S"/>
                             <constraint firstItem="Za3-hQ-zss" firstAttribute="leading" secondItem="k5y-1q-Jlv" secondAttribute="leading" id="a6A-ao-Zea"/>
-                            <constraint firstItem="Za3-hQ-zss" firstAttribute="top" secondItem="k5y-1q-Jlv" secondAttribute="top" id="t6U-TJ-l5D"/>
+                            <constraint firstItem="Za3-hQ-zss" firstAttribute="top" secondItem="lLu-PN-SRL" secondAttribute="bottom" id="tgo-Va-h6A"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="k5y-1q-Jlv"/>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="lLu-PN-SRL" id="4Bf-Zz-ymX"/>
                         <outlet property="tableView" destination="Za3-hQ-zss" id="WsQ-NN-1Qu"/>
                     </connections>
                 </viewController>
