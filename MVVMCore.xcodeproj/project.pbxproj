@@ -227,8 +227,9 @@
 		2B5A9B202475142700A60254 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
-				2BDAB149247520AA00B4E750 /* Storyboards */,
+				2B62A0902472861D00DB4571 /* MVVMCore */,
 				2B5A9AFD2472DB7C00A60254 /* MVVM Base */,
+				2BDAB149247520AA00B4E750 /* Storyboards */,
 				2B5A9B212475143C00A60254 /* Main */,
 				2B62A0972472875C00DB4571 /* Counter */,
 				2B5A9AF42472D99500A60254 /* CounterDetails */,
@@ -316,7 +317,6 @@
 				2B5A9B0C2474263300A60254 /* Interfaces */,
 				2B5A9B0B2474262200A60254 /* Workers */,
 				2B5A9B0A2474260200A60254 /* Entities */,
-				2B62A0902472861D00DB4571 /* MVVMCore */,
 			);
 			path = "Domain layer";
 			sourceTree = "<group>";
