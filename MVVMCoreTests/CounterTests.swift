@@ -1,5 +1,5 @@
 //
-//  MVVMCoreTests.swift
+//  CounterTests.swift
 //  MVVMCoreTests
 //
 //  Created by Petrov Anton on 5/18/20.
@@ -13,7 +13,7 @@ class EmptyTestRouter: MVVMRouter {
   var baseViewController: UIViewController?
 }
 
-class MVVMCoreTests: XCTestCase {
+class CounterTests: XCTestCase {
   
   override func setUp() {
     
