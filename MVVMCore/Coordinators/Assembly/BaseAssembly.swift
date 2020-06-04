@@ -26,7 +26,7 @@ final class BaseCoordinatorAssembly: CoordinatorAssembly {
 private typealias CoordinatorFactory = BaseCoordinatorAssembly
 private extension CoordinatorFactory {
   func makeMainCoordinator(with window: UIWindow) -> MainCoordinatorProtocol {
-    let coordinator: MainCoordinatorProtocol = MainCoordinator(assembly: self, window: window)
+    let coordinator = MainCoordinator(assembly: self, window: window)
     let factory = MainCoordinatorFactory()
     let router = MainCoordinatorRouter(factory: factory)
     coordinator.router = router
