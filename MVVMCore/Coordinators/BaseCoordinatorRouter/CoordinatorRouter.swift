@@ -9,8 +9,15 @@
 import UIKit
 
 protocol CoordinatorRouting {
+  
+  /// Navigation controller for Coordinator module
   var navigationController: UINavigationController? { get }
+  
+  /// Base controller for Coordinator module
   var baseViewController: UIViewController? { get }
   
+  /// Present root controller for Coordinator module
+  /// - Parameters:
+  ///   - window: root window for Coordinator module
   func route(with window: UIWindow)
 }
