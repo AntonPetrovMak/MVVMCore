@@ -18,17 +18,15 @@ protocol MoviesListViewModelOutput: BaseViewModelOutput {
   var moviesViewModels: Observable<[MoviesTableViewModel]> { get }
 }
 
-protocol MoviesListViewModelProtocol: MoviesListViewModelInput, MoviesListViewModelOutput, MVVMViewModel { }
+protocol MoviesListViewModelProtocol: MoviesListViewModelInput, MoviesListViewModelOutput { }
 
 class MoviesListViewModel: MoviesListViewModelProtocol {
   
   // MARK: MVVMViewModel
-  var router: MVVMRouter
   var worker: MoviesListWorkerProtocol
   var moviesFactory: MoviesModelsFactory
   
-  init(router: MVVMRouter, worker: MoviesListWorkerProtocol, moviesFactory: MoviesModelsFactory) {
-    self.router = router
+  init(worker: MoviesListWorkerProtocol, moviesFactory: MoviesModelsFactory) {
     self.worker = worker
     self.moviesFactory = moviesFactory
   }

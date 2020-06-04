@@ -10,12 +10,14 @@ import UIKit
 
 class BaseCoordinator: Coordinator {
   weak private(set) var parentCoordinator: BaseCoordinator?
+  let assembly: CoordinatorAssembly
   let window: UIWindow
   
   private let id = UUID().uuidString
   private lazy var childCoordinators: Set<BaseCoordinator> = []
   
-  init(window: UIWindow) {
+  init(assembly: CoordinatorAssembly, window: UIWindow) {
+    self.assembly = assembly
     self.window = window
   }
   

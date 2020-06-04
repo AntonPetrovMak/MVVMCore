@@ -1,5 +1,5 @@
 //
-//  Router.swift
+//  CoordinatorRouter.swift
 //  MVVMCore
 //
 //  Created by Serhii Petrishenko on 22.05.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol Router {
+protocol CoordinatorRouting {
   var navigationController: UINavigationController? { get }
   var baseViewController: UIViewController? { get }
   

@@ -8,10 +8,12 @@
 
 import UIKit
 
-protocol MoviesCoordinatorProtocol: Coordinator { }
+protocol MoviesCoordinatorProtocol: Coordinator {
+  var router: (MoviesDataPassing & CoordinatorRouting)! { get set }
+}
 
-class MoviesCoordinator: BaseCoordinator, MoviesCoordinatorProtocol {
-  var router: BaseRouter!
+final class MoviesCoordinator: BaseCoordinator, MoviesCoordinatorProtocol {
+  var router: (MoviesDataPassing & CoordinatorRouting)!
   
   override func start() {
     router.route(with: window)

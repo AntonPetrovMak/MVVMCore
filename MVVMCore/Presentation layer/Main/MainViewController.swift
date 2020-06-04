@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: BaseViewController, MVVMViewController {
+class MainViewController: BaseViewController {
   
   var viewModel: MainViewModelProtocol!
   

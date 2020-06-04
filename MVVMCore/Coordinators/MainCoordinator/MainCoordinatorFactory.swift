@@ -1,5 +1,5 @@
 //
-//  MainFactory.swift
+//  MainCoordinatorFactory.swift
 //  MVVMCore
 //
 //  Created by Serhii Petrishenko on 21.05.2020.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol MainFactoryProtocol {
-  func makeMainController(with router: MVVMRouter) -> UINavigationController
+protocol MainCoordinatorFactoryProtocol {
+  func makeMainController(with router: MainRoutingLogic) -> UINavigationController
 }
 
-class MainFactory: MainFactoryProtocol {
-  func makeMainController(with router: MVVMRouter) -> UINavigationController {
+final class MainCoordinatorFactory: MainCoordinatorFactoryProtocol {
+  func makeMainController(with router: MainRoutingLogic) -> UINavigationController {
     let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController") as! MainViewController
     let viewModel = MainViewModel(router: router)
     viewController.viewModel = viewModel

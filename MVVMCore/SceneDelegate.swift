@@ -16,8 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
   func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
     let windowScene = UIWindowScene(session: session, connectionOptions: connectionOptions)
     let window = UIWindow(windowScene: windowScene)
+    let baseAssembly = BaseCoordinatorAssembly()
+    let coordinator = baseAssembly.makeCoordinator(of: MainCoordinatorProtocol.self, with: window)
+    
     self.window = window
-    mainCoordinator = MainCoordinator(window: window)
+    mainCoordinator = coordinator
     mainCoordinator?.start()
   }
 

@@ -8,17 +8,12 @@
 
 import UIKit
 
-protocol CounterCoordinatorProtocol: Coordinator { }
+protocol CounterCoordinatorProtocol: Coordinator {
+  var router: (CounterDataPassing & CoordinatorRouting)! { get set }
+}
 
-class CounterCoordinator: BaseCoordinator, CounterCoordinatorProtocol {
-  private let router: BaseRouter
-  
-  override init(window: UIWindow) {
-    let router = CounterRouter(factory: CounterFactory())
-    self.router = router
-    super.init(window: window)
-    router.coordinator = self
-  }
+final class CounterCoordinator: BaseCoordinator, CounterCoordinatorProtocol {
+  var router: (CounterDataPassing & CoordinatorRouting)!
   
   override func start() {
     router.route(with: window)

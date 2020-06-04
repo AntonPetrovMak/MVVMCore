@@ -9,35 +9,27 @@
 import UIKit
 
 protocol MainCoordinatorProtocol: Coordinator {
+  var router: (MainDataPassing & CoordinatorRouting)! { get set }
+  
   func showCounter()
-  func showMovies(with type: MoviesRouter.Context)
+  func showMovies(with type: MoviesCoordinatorModels.ViewType)
 }
 
-class MainCoordinator: BaseCoordinator, MainCoordinatorProtocol {
-  private let router: BaseRouter
-  
-  override init(window: UIWindow) {
-    let router = MainRouter(factory: MainFactory())
-    self.router = router
-    super.init(window: window)
-    router.coordinator = self
-  }
+final class MainCoordinator: BaseCoordinator, MainCoordinatorProtocol {
+  var router: (MainDataPassing & CoordinatorRouting)!
   
   override func start() {
     router.route(with: window)
   }
   
   func showCounter() {
-    let coordinator = CounterCoordinator(window: window)
+    let coordinator = assembly.makeCoordinator(of: CounterCoordinatorProtocol.self, with: window)
     start(coordinator: coordinator)
   }
   
-  func showMovies(with type: MoviesRouter.Context) {
-    let router = MoviesRouter(factory: MoviesFactory())
-    router.type = type
-    let coordinator = MoviesCoordinator(window: window)
-    coordinator.router = router
-    router.coordinator = coordinator
+  func showMovies(with type: MoviesCoordinatorModels.ViewType) {
+    let coordinator = assembly.makeCoordinator(of: MoviesCoordinatorProtocol.self, with: window)
+    coordinator.router.type = type
     start(coordinator: coordinator)
   }
 }

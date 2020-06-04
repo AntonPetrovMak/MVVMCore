@@ -1,5 +1,5 @@
 //
-//  BaseRouter.swift
+//  BaseCoordinatorRouter.swift
 //  MVVMCore
 //
 //  Created by Serhii Petrishenko on 21.05.2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseRouter: NSObject, Router, MVVMRouter {
+class BaseCoordinatorRouter: NSObject, CoordinatorRouting {
   weak var window: UIWindow?
   weak var navigationController: UINavigationController?
   weak var baseViewController: UIViewController?
@@ -20,8 +20,4 @@ class BaseRouter: NSObject, Router, MVVMRouter {
       baseViewController = $0.viewControllers.first
     }
   }
-  
-  func route(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) { }
-  
-  func dismiss(animated: Bool, context: Any?, completion: ((Bool) -> Void)?) { }
 }

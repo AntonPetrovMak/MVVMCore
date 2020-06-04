@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestViewController: BaseViewController, MVVMViewController {
+class TestViewController: BaseViewController {
   
   @IBOutlet var countLabel: UILabel!
   @IBOutlet var pushButton: UIButton!

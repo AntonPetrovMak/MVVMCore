@@ -20,15 +20,15 @@ protocol TestViewModelOutput: BaseViewModelOutput {
   var count: Observable<Int> { get }
 }
 
-protocol TestViewModelProtocol: TestViewModelInput, TestViewModelOutput, MVVMViewModel { }
+protocol TestViewModelProtocol: TestViewModelInput, TestViewModelOutput { }
 
 class TestViewModel: TestViewModelProtocol {
   
   // MARK: - MVVMViewModel
   
-  var router: MVVMRouter
+  let router: CounterRoutingLogic
   
-  init(with router: MVVMRouter) {
+  init(with router: CounterRoutingLogic) {
     self.router = router
   }
   
@@ -59,12 +59,10 @@ class TestViewModel: TestViewModelProtocol {
   }
   
   func pushCounter() {
-    let context = CounterRouter.Context.pushForward(count: count)
-    router.route(with: context)
+    router.routeToDetails(with: .pushForward(count: count))
   }
   
   func presentCounter() {
-    let context = CounterRouter.Context.presentForward(count: count)
-    router.route(with: context)
+    router.routeToDetails(with: .presentForward(count: count))
   }
 }

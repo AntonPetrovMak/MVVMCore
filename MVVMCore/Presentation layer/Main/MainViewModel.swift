@@ -16,29 +16,26 @@ protocol MainViewModelInput {
 
 protocol MainViewModelProtocol: MainViewModelInput { }
 
-struct MainViewModel: MainViewModelProtocol, MVVMViewModel {
+struct MainViewModel: MainViewModelProtocol {
   
-  let router: MVVMRouter
+  let router: MainRoutingLogic
   
-  init(router: MVVMRouter) {
+  init(router: MainRoutingLogic) {
     self.router = router
   }
   
   // MARK: - MainViewModelInput
   
   func showCounter() {
-    let context = MainRouter.Context.counter
-    router.route(with: context)
+    router.routeToCounter()
   }
   
   func showSimpleMovies() {
-    let context = MainRouter.Context.simpleMovies
-    router.route(with: context)
+    router.routeToMovies(with: .setupSimple)
   }
    
   func showFullMovies() {
-    let context = MainRouter.Context.fullMovies
-    router.route(with: context)
+    router.routeToMovies(with: .setupFull)
   }
   
 }

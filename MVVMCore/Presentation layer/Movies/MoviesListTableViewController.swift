@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MoviesListTableViewController: BaseViewController, MVVMViewController {
+class MoviesListTableViewController: BaseViewController {
   
   var viewModel: MoviesListViewModelProtocol!
   

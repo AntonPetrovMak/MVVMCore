@@ -20,15 +20,15 @@ protocol TestDetailsViewModelOutput {
   var count: Observable<Int> { get }
 }
 
-protocol TestDetailsViewModelProtocol: TestDetailsViewModelInput, TestDetailsViewModelOutput, MVVMViewModel { }
+protocol TestDetailsViewModelProtocol: TestDetailsViewModelInput, TestDetailsViewModelOutput { }
 
 class TestDetailsViewModel: TestDetailsViewModelProtocol {
   
   // MARK: - MVVMViewModel
   
-  var router: MVVMRouter
+  let router: CounterDetailsRoutingLogic
   
-  init(with router: MVVMRouter, count: Observable<Int>, isDismissButtonHidden: Bool) {
+  init(with router: CounterDetailsRoutingLogic, count: Observable<Int>, isDismissButtonHidden: Bool) {
     self.router = router
     self.count = count
     self.isDismissButtonHidden = isDismissButtonHidden
@@ -51,6 +51,6 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   }
   
   func didSelectDismissButton() {
-    router.dismiss(animated: true, context: nil, completion: nil)
+    router.routeToRoot()
   }
 }

@@ -8,17 +8,21 @@
 
 import UIKit
 
-class CounterRouter: BaseRouter {
-  
-  enum Context {
-    case pushForward(count: Observable<Int>)
-    case presentForward(count: Observable<Int>)
-  }
-  
+protocol CounterDataPassing { }
+
+protocol CounterRoutingLogic {
+  func routeToDetails(with context: CounterCoordinatorModels.Context)
+}
+
+protocol CounterDetailsRoutingLogic {
+  func routeToRoot()
+}
+
+final class CounterCoordinatorRouter: BaseCoordinatorRouter, CounterDataPassing {
   weak var coordinator: CounterCoordinatorProtocol?
-  private let factory: CounterFactoryProtocol
+  private let factory: CounterCoordinatorFactoryProtocol
   
-  init(factory: CounterFactoryProtocol) {
+  init(factory: CounterCoordinatorFactoryProtocol) {
     self.factory = factory
   }
   
@@ -28,10 +32,10 @@ class CounterRouter: BaseRouter {
     navigationController?.delegate = self
     navigationController?.pushViewController(viewController, animated: true)
   }
-  
-  override func route(with context: Any?, animated: Bool, completion: ((Bool) -> Void)?) {
-    guard let context = context as? Context else { return }
-    
+}
+
+extension CounterCoordinatorRouter: CounterRoutingLogic {
+  func routeToDetails(with context: CounterCoordinatorModels.Context) {
     switch context {
     case .pushForward(let count):
       let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true)
@@ -41,13 +45,15 @@ class CounterRouter: BaseRouter {
       navigationController?.present(viewController, animated: true)
     }
   }
-  
-  override func dismiss(animated: Bool, context: Any?, completion: ((Bool) -> Void)?) {
-    navigationController?.presentedViewController?.dismiss(animated: animated, completion: nil)
+}
+
+extension CounterCoordinatorRouter: CounterDetailsRoutingLogic {
+  func routeToRoot() {
+    navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
   }
 }
 
-extension CounterRouter: UINavigationControllerDelegate {
+extension CounterCoordinatorRouter: UINavigationControllerDelegate {
   func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
     guard
       let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from),
