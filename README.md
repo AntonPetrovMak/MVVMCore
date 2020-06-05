@@ -13,7 +13,7 @@ Clean architecture is a software design philosophy that separates the elements o
 * Data Layer contains Store Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data to Domain Models.
 
 ## Dependency Direction
-* Presentation Layer (MVVM) = ViewModels (Presenters) + Views(UI)
+* Presentation Layer (MVVM) = ViewModels + Views(UI)
 * Domain Layer = Entities + Workers + Store Interfaces
 * Data Store Layer = Store Implementations + API(Network) + Persistence DB
 
