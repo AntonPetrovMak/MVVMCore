@@ -171,6 +171,7 @@
 			isa = PBXGroup;
 			children = (
 				2B5A9B0D2474267500A60254 /* Movie.swift */,
+				2B62A09E2472921800DB4571 /* Observer.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -280,14 +281,6 @@
 			path = MVVMCoreTests;
 			sourceTree = "<group>";
 		};
-		2B62A0902472861D00DB4571 /* Observer */ = {
-			isa = PBXGroup;
-			children = (
-				2B62A09E2472921800DB4571 /* Observer.swift */,
-			);
-			path = Observer;
-			sourceTree = "<group>";
-		};
 		2B62A0972472875C00DB4571 /* Counter */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,7 +296,6 @@
 				2B5A9B0C2474263300A60254 /* Store Interfaces */,
 				2B5A9B0B2474262200A60254 /* Workers */,
 				2B5A9B0A2474260200A60254 /* Entities */,
-				2B62A0902472861D00DB4571 /* Observer */,
 				2B5A9AFD2472DB7C00A60254 /* MVVMBase */,
 			);
 			path = "Domain layer";
