@@ -21,7 +21,9 @@ Clean architecture is a software design philosophy that separates the elements o
 
 The Model-View-ViewModel (MVVM) pattern is a UI design pattern. It provides a clean separation of concerns between the UI and Domain.
 
-![MVVM_page1](https://user-images.githubusercontent.com/15180933/83877081-948a6780-a742-11ea-86e5-a3bd5ef7ab63.png)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/83877081-948a6780-a742-11ea-86e5-a3bd5ef7ab63.png" >
+</div>
 
 **Responsibilities:**
 
@@ -62,7 +64,9 @@ if bind(_ viewModel: ViewModelProtocol) {
 
 Using any of the architectural patterns, we need to rely on base classes or protocols. This core ensures the integrity of the architecture. Since Swift is a protocol-oriented language and is easy to work with, we will use a protocol approach.
 
-![MVVMCoreProtocols](https://user-images.githubusercontent.com/15180933/83877405-2a25f700-a743-11ea-89eb-9f4b2cbfc5f8.png)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/83877405-2a25f700-a743-11ea-89eb-9f4b2cbfc5f8.png" >
+</div>
 
 **Entities descriptions:**
 
@@ -71,6 +75,12 @@ Using any of the architectural patterns, we need to rely on base classes or prot
 * **MVVMViewController** - ViewController must maintain a strong link to the ViewModel. Do not use the MVVMViewModel interface as associated type in ViewController, since we should not have access to the router through the ViewModel. We must define our custom protocol, which will be implemented by ViewModel and set it as associated type in ViewController.
 
 * **MVVMRouter** - Router must keep a weak reference on ViewController that avoids a retain cycle. It is worth noting that the router keeps a reference to the base controller and transfers it from module to module. As result that every modul can have a reference to the base controller (not parent).
+
+# Мodule example
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/83881377-357c2100-a749-11ea-9607-4b31f03bb260.png" >
+</div>
 
 # Templates
 
