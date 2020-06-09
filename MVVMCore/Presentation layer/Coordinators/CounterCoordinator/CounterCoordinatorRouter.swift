@@ -10,14 +10,6 @@ import UIKit
 
 protocol CounterDataPassing { }
 
-protocol CounterRoutingLogic {
-  func routeToDetails(with context: CounterCoordinatorModels.Context)
-}
-
-protocol CounterDetailsRoutingLogic {
-  func routeToRoot()
-}
-
 final class CounterCoordinatorRouter: BaseCoordinatorRouter, CounterDataPassing {
   weak var coordinator: CounterCoordinatorProtocol?
   private let factory: CounterCoordinatorFactoryProtocol

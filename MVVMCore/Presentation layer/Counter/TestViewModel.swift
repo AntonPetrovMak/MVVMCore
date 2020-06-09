@@ -20,6 +20,10 @@ protocol TestViewModelOutput: BaseViewModelOutput {
   var count: Observable<Int> { get }
 }
 
+protocol CounterRoutingLogic {
+  func routeToDetails(with context: CounterCoordinatorModels.Context)
+}
+
 protocol TestViewModelProtocol: TestViewModelInput, TestViewModelOutput { }
 
 class TestViewModel: TestViewModelProtocol {

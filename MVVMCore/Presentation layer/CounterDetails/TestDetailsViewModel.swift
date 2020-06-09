@@ -22,6 +22,10 @@ protocol TestDetailsViewModelOutput {
 
 protocol TestDetailsViewModelProtocol: TestDetailsViewModelInput, TestDetailsViewModelOutput { }
 
+protocol CounterDetailsRoutingLogic {
+  func routeToRoot()
+}
+
 class TestDetailsViewModel: TestDetailsViewModelProtocol {
   
   // MARK: - MVVMViewModel

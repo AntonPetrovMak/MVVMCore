@@ -16,6 +16,11 @@ protocol MainViewModelInput {
 
 protocol MainViewModelProtocol: MainViewModelInput { }
 
+protocol MainRoutingLogic {
+  func routeToCounter()
+  func routeToMovies(with type: MoviesCoordinatorModels.ViewType)
+}
+
 struct MainViewModel: MainViewModelProtocol {
   
   let router: MainRoutingLogic

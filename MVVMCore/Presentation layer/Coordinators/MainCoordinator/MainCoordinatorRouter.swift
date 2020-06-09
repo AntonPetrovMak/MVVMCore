@@ -10,11 +10,6 @@ import UIKit
 
 protocol MainDataPassing { }
 
-protocol MainRoutingLogic {
-  func routeToCounter()
-  func routeToMovies(with type: MoviesCoordinatorModels.ViewType)
-}
-
 final class MainCoordinatorRouter: BaseCoordinatorRouter, MainDataPassing {
   weak var coordinator: MainCoordinatorProtocol?
   private let factory: MainCoordinatorFactoryProtocol
