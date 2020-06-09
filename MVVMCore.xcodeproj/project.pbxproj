@@ -186,7 +186,6 @@
 		2B5A9B0A2474260200A60254 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				2B62A09E2472921800DB4571 /* Observer.swift */,
 				2B5A9B0D2474267500A60254 /* Movie.swift */,
 				2B62A09E2472921800DB4571 /* Observer.swift */,
 			);
@@ -240,6 +239,7 @@
 		2B5A9B202475142700A60254 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				5B54127024768DF6001DE013 /* Coordinators */,
 				2B5A9AFD2472DB7C00A60254 /* MVVM Base */,
 				2BDAB149247520AA00B4E750 /* Storyboards */,
 				2B5A9B212475143C00A60254 /* Main */,
@@ -282,7 +282,6 @@
 			children = (
 				2B62A06E2472860700DB4571 /* AppDelegate.swift */,
 				2B62A0702472860700DB4571 /* SceneDelegate.swift */,
-				5B54127024768DF6001DE013 /* Coordinators */,
 				2B62A0A42472C47500DB4571 /* Domain layer */,
 				2B5A9B13247429D100A60254 /* Data layer */,
 				2B5A9B202475142700A60254 /* Presentation layer */,
