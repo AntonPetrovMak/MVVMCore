@@ -18,8 +18,7 @@ class MoviesTests: XCTestCase {
   func testMoviesSearchSuccess() {
     let mockStore = MoviesListMockStore()
     let worker = MoviesListWorker(store: mockStore)
-    let viewModel = MoviesListViewModel(router: EmptyTestRouter(),
-                                        worker: worker,
+    let viewModel = MoviesListViewModel(worker: worker,
                                         moviesFactory: FullMoviesModelsFactory())
     viewModel.loadMovies()
     XCTAssertEqual(viewModel.moviesViewModels.value.count, 5)

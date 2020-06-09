@@ -9,10 +9,6 @@
 import XCTest
 @testable import MVVMCore
 
-class EmptyTestRouter: MVVMRouter {
-  var baseViewController: UIViewController?
-}
-
 class CounterTests: XCTestCase {
   
   override func setUp() {
@@ -20,9 +16,11 @@ class CounterTests: XCTestCase {
   }
   
   func testCounterBackTransferDataSuccess() {
-    let viewModel = TestViewModel(with: EmptyTestRouter())
+    let factory = CounterCoordinatorFactory()
+    let router = CounterCoordinatorRouter(factory: factory)
+    let viewModel = TestViewModel(with: router)
     XCTAssertEqual(viewModel.count.value, 0)
-    let detailsViewModel = TestDetailsViewModel(with: EmptyTestRouter(),
+    let detailsViewModel = TestDetailsViewModel(with: router,
                                                 count: viewModel.count,
                                                 isDismissButtonHidden: true)
     detailsViewModel.increaseCounter()
