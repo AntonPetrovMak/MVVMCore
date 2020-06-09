@@ -24,8 +24,7 @@ class CounterTests: XCTestCase {
     XCTAssertEqual(viewModel.count.value, 0)
     let detailsViewModel = TestDetailsViewModel(with: EmptyTestRouter(),
                                                 count: viewModel.count,
-                                                isDismissButtonHidden: true,
-                                                mainFullMoviesObserver: nil)
+                                                isDismissButtonHidden: true)
     detailsViewModel.increaseCounter()
     XCTAssertEqual(viewModel.count.value, 1)
     detailsViewModel.decreaseCounter()
