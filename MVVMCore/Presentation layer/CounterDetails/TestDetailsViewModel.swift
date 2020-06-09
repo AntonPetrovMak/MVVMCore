@@ -14,6 +14,7 @@ protocol TestDetailsViewModelInput {
   func increaseCounter()
   func decreaseCounter()
   func didSelectDismissButton()
+  func goToFullMoviesButton()
 }
 
 protocol TestDetailsViewModelOutput {
@@ -27,20 +28,26 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   // MARK: - MVVMViewModel
   
   let router: CounterDetailsRoutingLogic
+  let mainFullMoviesObserver: ObservableEmpty?
   
-  init(with router: CounterDetailsRoutingLogic, count: Observable<Int>, isDismissButtonHidden: Bool) {
-    self.router = router
-    self.count = count
-    self.isDismissButtonHidden = isDismissButtonHidden
-  }
   
   // MARK: - TestDetailsViewModelOutput
   
-  var count: Observable<Int>
+  let count: Observable<Int>
   
   // MARK: - TestViewModelInput
   
   let isDismissButtonHidden: Bool
+  
+  init(with router: CounterDetailsRoutingLogic,
+        count: Observable<Int>,
+        isDismissButtonHidden: Bool,
+        mainFullMoviesObserver: ObservableEmpty?) {
+     self.router = router
+     self.count = count
+     self.isDismissButtonHidden = isDismissButtonHidden
+     self.mainFullMoviesObserver = mainFullMoviesObserver
+   }
   
   func increaseCounter() {
     count.value = count.value + 1
@@ -52,5 +59,9 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
   
   func didSelectDismissButton() {
     router.routeToRoot()
+  }
+  
+  func goToFullMoviesButton() {
+    mainFullMoviesObserver?.notify()
   }
 }

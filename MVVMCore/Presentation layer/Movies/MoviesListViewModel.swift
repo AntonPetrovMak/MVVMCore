@@ -12,6 +12,7 @@ protocol MoviesListViewModelInput {
   var screenTitle: String { get }
   func viewDidLoad()
   func pullToRefresh()
+  func filterChanged(_ text: String)
 }
 
 protocol MoviesListViewModelOutput: BaseViewModelOutput {
@@ -36,11 +37,16 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
   var isLoading: Observable<Bool> = Observable(false)
   var error: Observable<String?> = Observable(nil)
   
-  var movies1: Observable<[Movie]> = Observable([])
+  private var filter: String = ""
+  
   private var movies: [Movie] = [] {
-    didSet {
-      moviesViewModels.value = movies.map { moviesFactory.makeTableViewModel($0)}
-    }
+    didSet { fetchMoviesViewModels() }
+  }
+  
+  private func fetchMoviesViewModels() {
+    moviesViewModels.value = movies
+      .filter { $0.name.contains(filter) || filter.isEmpty }
+      .map { moviesFactory.makeTableViewModel($0)}
   }
   
   //MARK: MoviesListViewModelInput
@@ -55,6 +61,11 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
   
   func pullToRefresh() {
     loadMovies()
+  }
+  
+  func filterChanged(_ text: String) {
+    filter = text
+    fetchMoviesViewModels()
   }
   
   //MARK: Private

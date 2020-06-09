@@ -12,6 +12,7 @@ class TestDetailsViewController: BaseViewController {
   
   @IBOutlet var countLabel: UILabel!
   @IBOutlet var dismissButton: UIButton!
+  @IBOutlet var pushFullMoviesButton: UIButton!
   
   var viewModel: TestDetailsViewModelProtocol!
   
@@ -37,5 +38,9 @@ class TestDetailsViewController: BaseViewController {
   
   @IBAction func disnissButton() {
     viewModel.didSelectDismissButton()
+  }
+  
+  @IBAction func fullMoviesButton() {
+    viewModel.goToFullMoviesButton()
   }
 }

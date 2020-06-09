@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2B16E2A7247BCD3B0033D9ED /* MoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B16E2A6247BCD3B0033D9ED /* MoviesTests.swift */; };
 		2B5A9AF82472D9CA00A60254 /* TestDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AF72472D9CA00A60254 /* TestDetailsViewModel.swift */; };
 		2B5A9AFA2472D9D700A60254 /* TestDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */; };
 		2B5A9AFF2472DB8B00A60254 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */; };
@@ -28,7 +29,7 @@
 		2B62A0762472860700DB4571 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B62A0742472860700DB4571 /* Main.storyboard */; };
 		2B62A0782472860800DB4571 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2B62A0772472860800DB4571 /* Assets.xcassets */; };
 		2B62A07B2472860800DB4571 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2B62A0792472860800DB4571 /* LaunchScreen.storyboard */; };
-		2B62A0862472860900DB4571 /* MVVMCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0852472860900DB4571 /* MVVMCoreTests.swift */; };
+		2B62A0862472860900DB4571 /* CounterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A0852472860900DB4571 /* CounterTests.swift */; };
 		2B62A09B247289C100DB4571 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09A247289C100DB4571 /* TestViewModel.swift */; };
 		2B62A09D247289D200DB4571 /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09C247289D100DB4571 /* TestViewController.swift */; };
 		2B62A09F2472921800DB4571 /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B62A09E2472921800DB4571 /* Observer.swift */; };
@@ -63,6 +64,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2B16E2A6247BCD3B0033D9ED /* MoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTests.swift; sourceTree = "<group>"; };
 		2B5A9AF72472D9CA00A60254 /* TestDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewModel.swift; sourceTree = "<group>"; };
 		2B5A9AF92472D9D700A60254 /* TestDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDetailsViewController.swift; sourceTree = "<group>"; };
 		2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +89,7 @@
 		2B62A07A2472860800DB4571 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2B62A07C2472860800DB4571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B62A0812472860900DB4571 /* MVVMCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MVVMCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		2B62A0852472860900DB4571 /* MVVMCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVVMCoreTests.swift; sourceTree = "<group>"; };
+		2B62A0852472860900DB4571 /* CounterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterTests.swift; sourceTree = "<group>"; };
 		2B62A0872472860900DB4571 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2B62A09A247289C100DB4571 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		2B62A09C247289D100DB4571 /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
@@ -130,6 +132,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B16E2A8247BE5E90033D9ED /* Network */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2B16E2A9247BE5ED0033D9ED /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		2B5A9AF42472D99500A60254 /* CounterDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,13 +155,13 @@
 			path = CounterDetails;
 			sourceTree = "<group>";
 		};
-		2B5A9AFD2472DB7C00A60254 /* MVVMBase */ = {
+		2B5A9AFD2472DB7C00A60254 /* MVVM Base */ = {
 			isa = PBXGroup;
 			children = (
 				2B5A9AFE2472DB8B00A60254 /* BaseViewController.swift */,
 				2B5A9B002472DBD200A60254 /* BaseViewModelOutput.swift */,
 			);
-			path = MVVMBase;
+			path = "MVVM Base";
 			sourceTree = "<group>";
 		};
 		2B5A9B02247423C800A60254 /* Movies */ = {
@@ -170,6 +186,7 @@
 		2B5A9B0A2474260200A60254 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				2B62A09E2472921800DB4571 /* Observer.swift */,
 				2B5A9B0D2474267500A60254 /* Movie.swift */,
 				2B62A09E2472921800DB4571 /* Observer.swift */,
 			);
@@ -184,17 +201,19 @@
 			path = Workers;
 			sourceTree = "<group>";
 		};
-		2B5A9B0C2474263300A60254 /* Store Interfaces */ = {
+		2B5A9B0C2474263300A60254 /* Interfaces */ = {
 			isa = PBXGroup;
 			children = (
 				2B5A9B112474299000A60254 /* MoviesListStoreProtocol.swift */,
 			);
-			path = "Store Interfaces";
+			path = Interfaces;
 			sourceTree = "<group>";
 		};
 		2B5A9B13247429D100A60254 /* Data layer */ = {
 			isa = PBXGroup;
 			children = (
+				2B16E2A9247BE5ED0033D9ED /* DataBase */,
+				2B16E2A8247BE5E90033D9ED /* Network */,
 				2B5A9B03247423EA00A60254 /* Store */,
 			);
 			path = "Data layer";
@@ -221,6 +240,8 @@
 		2B5A9B202475142700A60254 /* Presentation layer */ = {
 			isa = PBXGroup;
 			children = (
+				2B5A9AFD2472DB7C00A60254 /* MVVM Base */,
+				2BDAB149247520AA00B4E750 /* Storyboards */,
 				2B5A9B212475143C00A60254 /* Main */,
 				2B62A0972472875C00DB4571 /* Counter */,
 				2B5A9AF42472D99500A60254 /* CounterDetails */,
@@ -265,7 +286,6 @@
 				2B62A0A42472C47500DB4571 /* Domain layer */,
 				2B5A9B13247429D100A60254 /* Data layer */,
 				2B5A9B202475142700A60254 /* Presentation layer */,
-				2BDAB149247520AA00B4E750 /* Storyboards */,
 				2B62A0772472860800DB4571 /* Assets.xcassets */,
 				2B62A07C2472860800DB4571 /* Info.plist */,
 			);
@@ -275,7 +295,8 @@
 		2B62A0842472860900DB4571 /* MVVMCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				2B62A0852472860900DB4571 /* MVVMCoreTests.swift */,
+				2B62A0852472860900DB4571 /* CounterTests.swift */,
+				2B16E2A6247BCD3B0033D9ED /* MoviesTests.swift */,
 				2B62A0872472860900DB4571 /* Info.plist */,
 			);
 			path = MVVMCoreTests;
@@ -293,10 +314,9 @@
 		2B62A0A42472C47500DB4571 /* Domain layer */ = {
 			isa = PBXGroup;
 			children = (
-				2B5A9B0C2474263300A60254 /* Store Interfaces */,
+				2B5A9B0C2474263300A60254 /* Interfaces */,
 				2B5A9B0B2474262200A60254 /* Workers */,
 				2B5A9B0A2474260200A60254 /* Entities */,
-				2B5A9AFD2472DB7C00A60254 /* MVVMBase */,
 			);
 			path = "Domain layer";
 			sourceTree = "<group>";
@@ -530,7 +550,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2B62A0862472860900DB4571 /* MVVMCoreTests.swift in Sources */,
+				2B16E2A7247BCD3B0033D9ED /* MoviesTests.swift in Sources */,
+				2B62A0862472860900DB4571 /* CounterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
