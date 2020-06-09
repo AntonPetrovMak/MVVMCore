@@ -17,3 +17,5 @@ protocol ErrorViewModelOutput {
 }
 
 protocol BaseViewModelOutput: LoadingViewModelOutput, ErrorViewModelOutput { }
+
+
