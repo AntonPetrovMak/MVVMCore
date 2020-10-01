@@ -28,14 +28,29 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
     self.factory = factory
   }
   
-  func start() {
-    // Must be implemented
+  func setupRootViewController() -> UIViewController {
+    return UIViewController()
   }
   
-  func start(coordinator: Coordinator) {
+  func start(style: CoordinatorPresentationStyle, animated: Bool) {
+    let rootViewController = setupRootViewController()
+    switch style {
+    case .push:
+      navigationController?.pushViewController(rootViewController, animated: animated)
+    case .presentSecondarySteck:
+      let secondaryNavigation = UINavigationController(rootViewController: rootViewController)
+      parentCoordinator?.navigationController?.present(secondaryNavigation, animated: animated, completion: nil)
+      navigationController = secondaryNavigation
+    case .setRoot:
+      navigationController?.setViewControllers([rootViewController], animated: animated)
+    case .custom: ()
+    }
+  }
+  
+  func start(coordinator: Coordinator, style: CoordinatorPresentationStyle, animated: Bool) {
     childCoordinators[coordinator.id] = WeakCoordinator(coordinator: coordinator)
     coordinator.parentCoordinator = self
-    coordinator.start()
+    coordinator.start(style: style, animated: animated)
   }
   
   func stop() {

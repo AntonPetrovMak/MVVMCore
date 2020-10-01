@@ -15,30 +15,24 @@ protocol MainRoutingLogic {
 
 final class MainCoordinator: BaseCoordinator<MainCoordinatorFactoryProtocol> {
   
-  override func start() {
-    let mainViewController = factory.makeMainController(with: self)
-    navigationController?.setViewControllers([mainViewController], animated: true)
+  override func setupRootViewController() -> UIViewController {
+    return factory.makeMainController(with: self)
   }
   
 }
 
 // MARK: MainRoutingLogic
 
-extension MainCoordinator: MainRoutingLogic, CounterRoutingLogic {
-  func routeToDetails(with context: CounterCoordinatorModels.Context) {
-    
-  }
-  
+extension MainCoordinator: MainRoutingLogic {
   
   func routeToCounter(modalView: Bool) {
     let coordinator = assembly.makeCounterCoordinator(with: navigationController, modalView: modalView)
-    start(coordinator: coordinator)
+    start(coordinator: coordinator, style: modalView ? .presentSecondarySteck : .push)
   }
   
   func routeToMovies(with type: MoviesCoordinatorModels.ViewType) {
     let coordinator = assembly.makeMoviesCoordinator(with: navigationController, moviesModelsFactory: type.modelsFactory)
-    start(coordinator: coordinator)
+    start(coordinator: coordinator, style: .push)
   }
-  
   
 }

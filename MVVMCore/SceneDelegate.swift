@@ -24,7 +24,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     let coordinator = baseAssembly.makeMainCoordinator(with: navigation)
     mainCoordinator = coordinator
-    mainCoordinator?.start()
+    mainCoordinator?.start(style: .setRoot, animated: false)
   }
 
   func sceneDidDisconnect(_ scene: UIScene) {

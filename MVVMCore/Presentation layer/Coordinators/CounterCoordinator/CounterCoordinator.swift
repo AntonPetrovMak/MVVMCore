@@ -21,15 +21,8 @@ final class CounterCoordinator: BaseCoordinator<CounterCoordinatorFactoryProtoco
     super.init(assembly: assembly, navigationController: navigationController, factory: factory)
   }
   
-  override func start() {
-    let viewController = factory.makeCounterController(with: self, isDismissButtonHidden: !modalView)
-    if modalView {
-      let secondaryNavigation = UINavigationController(rootViewController: viewController)
-      parentCoordinator?.navigationController?.present(secondaryNavigation, animated: true, completion: nil)
-      navigationController = secondaryNavigation
-    } else {
-      navigationController?.pushViewController(viewController, animated: true)
-    }
+  override func setupRootViewController() -> UIViewController {
+    return factory.makeCounterController(with: self, isDismissButtonHidden: !modalView)
   }
   
 }

@@ -24,9 +24,8 @@ final class MoviesCoordinator: BaseCoordinator<MoviesCoordinatorFactoryProtocol>
     super.init(assembly: assembly, navigationController: navigationController, factory: factory)
   }
   
-  override func start() {
-    let viewController = factory.makeMovieController(with: self, factory: moviesModelsFactory)
-    navigationController?.pushViewController(viewController, animated: true)
+  override func setupRootViewController() -> UIViewController {
+    return factory.makeMovieController(with: self, factory: moviesModelsFactory)
   }
   
 }
@@ -37,7 +36,7 @@ extension MoviesCoordinator: MoviesRoutingLogic {
   
   func routeToCounter() {
     let coordinator = assembly.makeCounterCoordinator(with: navigationController, modalView: false)
-    start(coordinator: coordinator)
+    start(coordinator: coordinator, style: .push, animated: false)
   }
   
 }
