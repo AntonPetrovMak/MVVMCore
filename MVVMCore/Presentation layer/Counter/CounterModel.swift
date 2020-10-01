@@ -64,11 +64,15 @@ class CounterViewModel: CounterViewModelProtocol {
   }
   
   func pushCounter() {
-    router.routeToDetails(with: .pushForward(count: count))
+    router.routeToDetails(with: .pushForward(count: count.value, didChangeCount: { [weak self] newCount in
+      self?.count.value = newCount
+    }))
   }
   
   func presentCounter() {
-    router.routeToDetails(with: .presentForward(count: count))
+    router.routeToDetails(with: .presentForward(count: count.value, didChangeCount: { [weak self] newCount in
+      self?.count.value = newCount
+    }))
   }
   
   deinit {

@@ -1,5 +1,5 @@
 //
-//  TestDetailsViewController.swift
+//  CounterDetailsViewController.swift
 //  MVVMCore
 //
 //  Created by Petrov Anton on 5/18/20.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-class TestDetailsViewController: BaseViewController {
+class CounterDetailsViewController: BaseViewController {
   
   @IBOutlet var countLabel: UILabel!
   @IBOutlet var dismissButton: UIButton!
   
-  var viewModel: TestDetailsViewModelProtocol!
+  var viewModel: CounterDetailsViewModelProtocol!
   
   override func viewDidLoad() {
     super.viewDidLoad()

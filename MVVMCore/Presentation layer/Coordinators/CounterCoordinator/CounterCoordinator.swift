@@ -40,11 +40,11 @@ extension CounterCoordinator: CounterRoutingLogic {
   
   func routeToDetails(with context: CounterCoordinatorModels.Context) {
     switch context {
-    case .pushForward(let count):
-      let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true)
+    case .pushForward(let count, let didChangeCount):
+      let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true, didChangeCount: didChangeCount)
       navigationController?.pushViewController(viewController, animated: true)
-    case .presentForward(let count):
-      let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false)
+    case .presentForward(let count, let didChangeCount):
+      let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false, didChangeCount: didChangeCount)
       navigationController?.present(viewController, animated: true)
     }
   }

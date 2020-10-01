@@ -8,9 +8,12 @@
 
 import UIKit
 
-protocol CounterCoordinatorFactoryProtocol {
+protocol CounterCoordinatorFactoryProtocol: class {
   func makeCounterController(with router: CounterRoutingLogic, isDismissButtonHidden: Bool) -> UIViewController
-  func makeCounterDetailsController(with router: CounterDetailsRoutingLogic, count: Observable<Int>, isDismissButtonHidden: Bool) -> UIViewController
+  func makeCounterDetailsController(with router: CounterDetailsRoutingLogic,
+                                    count: Int,
+                                    isDismissButtonHidden: Bool,
+                                    didChangeCount: @escaping (Int) -> Void) -> UIViewController
 }
 
 final class CounterCoordinatorFactory: CounterCoordinatorFactoryProtocol {
@@ -21,9 +24,9 @@ final class CounterCoordinatorFactory: CounterCoordinatorFactoryProtocol {
     return viewController
   }
   
-  func makeCounterDetailsController(with router: CounterDetailsRoutingLogic, count: Observable<Int>, isDismissButtonHidden: Bool) -> UIViewController {
-    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TestDetailsViewController") as! TestDetailsViewController
-    let viewModel = TestDetailsViewModel(with: router, count: count, isDismissButtonHidden: isDismissButtonHidden)
+  func makeCounterDetailsController(with router: CounterDetailsRoutingLogic, count: Int, isDismissButtonHidden: Bool,didChangeCount: @escaping (Int) -> Void) -> UIViewController {
+    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CounterDetailsViewController") as! CounterDetailsViewController
+    let viewModel = CounterDetailsViewModel(with: router, count: count, isDismissButtonHidden: isDismissButtonHidden, didChangeCount: didChangeCount)
     viewController.viewModel = viewModel
     return viewController
   }
