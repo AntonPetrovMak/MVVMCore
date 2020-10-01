@@ -30,4 +30,8 @@ class MainViewController: BaseViewController {
     viewModel.showFullMovies()
   }
   
+  deinit {
+    print(#function + "\(String(describing: self))")
+  }
+  
 }

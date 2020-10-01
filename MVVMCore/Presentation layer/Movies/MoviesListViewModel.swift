@@ -13,6 +13,7 @@ protocol MoviesListViewModelInput {
   func viewDidLoad()
   func pullToRefresh()
   func filterChanged(_ text: String)
+  func showCounter()
 }
 
 protocol MoviesListViewModelOutput: BaseViewModelOutput {
@@ -24,10 +25,12 @@ protocol MoviesListViewModelProtocol: MoviesListViewModelInput, MoviesListViewMo
 class MoviesListViewModel: MoviesListViewModelProtocol {
   
   // MARK: MVVMViewModel
-  var worker: MoviesListWorkerProtocol
-  var moviesFactory: MoviesModelsFactory
+  let worker: MoviesListWorkerProtocol
+  let moviesFactory: MoviesModelsFactory
+  let router: MoviesRoutingLogic
   
-  init(worker: MoviesListWorkerProtocol, moviesFactory: MoviesModelsFactory) {
+  init(router: MoviesRoutingLogic, worker: MoviesListWorkerProtocol, moviesFactory: MoviesModelsFactory) {
+    self.router = router
     self.worker = worker
     self.moviesFactory = moviesFactory
   }
@@ -68,6 +71,10 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
     fetchMoviesViewModels()
   }
   
+  func showCounter() {
+    router.routeToCounter()
+  }
+  
   //MARK: Private
   
   func loadMovies() {
@@ -82,5 +89,9 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
         self.error.value = error.localizedDescription
       }
     }
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
   }
 }

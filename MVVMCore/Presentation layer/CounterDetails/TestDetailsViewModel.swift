@@ -13,7 +13,7 @@ protocol TestDetailsViewModelInput {
   
   func increaseCounter()
   func decreaseCounter()
-  func didSelectDismissButton()
+  func didSelectRootButton()
 }
 
 protocol TestDetailsViewModelOutput {
@@ -56,7 +56,11 @@ class TestDetailsViewModel: TestDetailsViewModelProtocol {
     count.value = count.value - 1
   }
   
-  func didSelectDismissButton() {
+  func didSelectRootButton() {
     router.routeToRoot()
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
   }
 }

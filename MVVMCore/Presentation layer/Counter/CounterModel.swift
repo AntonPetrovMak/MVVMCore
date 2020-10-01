@@ -14,7 +14,6 @@ protocol CounterViewModelInput {
   func clearData()
   func pushCounter()
   func presentCounter()
-  func didSelectDismissButton()
 }
 
 protocol CounterViewModelOutput: BaseViewModelOutput {
@@ -47,11 +46,11 @@ class CounterViewModel: CounterViewModelProtocol {
   // MARK: - CounterViewModelInput
   
   func viewDidLoad() {
-    print("CounterViewModel: viewDidLoad")
+    
   }
   
   func viewWillAppear() {
-    print("CounterViewModel: viewWillAppear")
+    
   }
   
   func clearData() {
@@ -70,10 +69,6 @@ class CounterViewModel: CounterViewModelProtocol {
   
   func presentCounter() {
     router.routeToDetails(with: .presentForward(count: count))
-  }
-  
-  func didSelectDismissButton() {
-    print(#function + "\(String(describing: self))")
   }
   
   deinit {

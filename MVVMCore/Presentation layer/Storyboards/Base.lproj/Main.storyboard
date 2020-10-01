@@ -197,12 +197,21 @@
                                     <action selector="dismissButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZVH-63-tFL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJS-MM-8Oj">
+                                <rect key="frame" x="329" y="92" width="70" height="30"/>
+                                <state key="normal" title="Go to root"/>
+                                <connections>
+                                    <action selector="rootButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="8x5-WJ-d3o"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="yJS-MM-8Oj" firstAttribute="top" secondItem="Nbe-Zx-4ZG" secondAttribute="bottom" constant="10" id="evA-OW-XIK"/>
                             <constraint firstItem="Nbe-Zx-4ZG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="lb0-s7-rti"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Nbe-Zx-4ZG" secondAttribute="trailing" constant="16" id="nUP-Md-SeQ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yJS-MM-8Oj" secondAttribute="trailing" constant="15" id="sFW-XZ-Aaa"/>
                             <constraint firstItem="Ca6-Z3-d6F" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="yRB-21-qhJ"/>
                             <constraint firstItem="Ca6-Z3-d6F" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="zfs-nt-IJj"/>
                         </constraints>
@@ -245,6 +254,18 @@
                             <constraint firstItem="Za3-hQ-zss" firstAttribute="top" secondItem="lLu-PN-SRL" secondAttribute="bottom" id="tgo-Va-h6A"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="SmD-7P-bX0">
+                        <barButtonItem key="rightBarButtonItem" title="Push Counter" style="plain" id="7Hp-34-4r2">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="f4U-yd-nps">
+                                <rect key="frame" x="300" y="7" width="94" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Push Counter"/>
+                                <connections>
+                                    <action selector="pushCounter" destination="34V-f8-mSk" eventType="touchUpInside" id="sfT-JQ-2UZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="lLu-PN-SRL" id="4Bf-Zz-ymX"/>
                         <outlet property="tableView" destination="Za3-hQ-zss" id="WsQ-NN-1Qu"/>
@@ -252,7 +273,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pgu-Ct-9nh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1163.768115942029" y="503.57142857142856"/>
+            <point key="canvasLocation" x="2073.913043478261" y="503.57142857142856"/>
         </scene>
     </scenes>
     <resources>

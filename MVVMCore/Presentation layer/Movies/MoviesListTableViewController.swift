@@ -41,8 +41,16 @@ class MoviesListTableViewController: BaseViewController {
     viewModel.pullToRefresh()
   }
   
+  @IBAction func pushCounter() {
+    viewModel.showCounter()
+  }
+  
   private func setRefreshControl(isLoading: Bool) {
     isLoading ? refreshControl.programaticallyBeginRefreshing(in: tableView) : refreshControl.endRefreshing()
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
   }
   
 }

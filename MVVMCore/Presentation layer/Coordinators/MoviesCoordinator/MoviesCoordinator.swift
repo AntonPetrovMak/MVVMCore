@@ -8,12 +8,16 @@
 
 import UIKit
 
+protocol MoviesRoutingLogic {
+  func routeToCounter()
+}
+
 final class MoviesCoordinator: BaseCoordinator<MoviesCoordinatorFactoryProtocol> {
   
   var moviesModelsFactory: MoviesModelsFactory
   
   init(assembly: CoordinatorAssembly,
-       navigationController: UINavigationController,
+       navigationController: UINavigationController?,
        factory: MoviesCoordinatorFactoryProtocol,
        moviesModelsFactory: MoviesModelsFactory) {
     self.moviesModelsFactory = moviesModelsFactory
@@ -21,8 +25,19 @@ final class MoviesCoordinator: BaseCoordinator<MoviesCoordinatorFactoryProtocol>
   }
   
   override func start() {
-    let viewController = factory.makeMovieController(with: moviesModelsFactory)
-    navigationController.pushViewController(viewController, animated: true)
+    let viewController = factory.makeMovieController(with: self, factory: moviesModelsFactory)
+    navigationController?.pushViewController(viewController, animated: true)
+  }
+  
+}
+
+// MARK: - MoviesRoutingLogic
+
+extension MoviesCoordinator: MoviesRoutingLogic {
+  
+  func routeToCounter() {
+    let coordinator = assembly.makeCounterCoordinator(with: navigationController, modalView: false)
+    start(coordinator: coordinator)
   }
   
 }

@@ -16,13 +16,13 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
   
   weak var parentCoordinator: Coordinator?
   
-  var navigationController: UINavigationController
+  weak var navigationController: UINavigationController?
   
   var id = UUID()
   
   var childCoordinators: [UUID: WeakCoordinator] = [:]
   
-  init(assembly: CoordinatorAssembly, navigationController: UINavigationController, factory: FactoryType) {
+  init(assembly: CoordinatorAssembly, navigationController: UINavigationController?, factory: FactoryType) {
     self.assembly = assembly
     self.navigationController = navigationController
     self.factory = factory

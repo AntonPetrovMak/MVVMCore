@@ -17,14 +17,18 @@ final class MainCoordinator: BaseCoordinator<MainCoordinatorFactoryProtocol> {
   
   override func start() {
     let mainViewController = factory.makeMainController(with: self)
-    navigationController.setViewControllers([mainViewController], animated: true)
+    navigationController?.setViewControllers([mainViewController], animated: true)
   }
   
 }
 
 // MARK: MainRoutingLogic
 
-extension MainCoordinator: MainRoutingLogic {
+extension MainCoordinator: MainRoutingLogic, CounterRoutingLogic {
+  func routeToDetails(with context: CounterCoordinatorModels.Context) {
+    
+  }
+  
   
   func routeToCounter(modalView: Bool) {
     let coordinator = assembly.makeCounterCoordinator(with: navigationController, modalView: modalView)

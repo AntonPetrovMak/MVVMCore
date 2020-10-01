@@ -36,6 +36,15 @@ class TestDetailsViewController: BaseViewController {
   }
   
   @IBAction func dismissButtonTapped() {
-    viewModel.didSelectDismissButton()
+    dismiss(animated: true, completion: nil)
   }
+  
+  @IBAction func rootButtonTapped() {
+    viewModel.didSelectRootButton()
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
+  }
+  
 }

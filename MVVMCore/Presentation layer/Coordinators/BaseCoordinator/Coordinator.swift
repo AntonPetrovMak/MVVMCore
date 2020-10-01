@@ -17,7 +17,7 @@ protocol Coordinator: class {
   var childCoordinators: [UUID: WeakCoordinator] { get }
   
   /// NavigationController for coordinator, navigation which used for navigation
-  var navigationController: UINavigationController { get }
+  var navigationController: UINavigationController? { get }
   
   /// Present coordinator
   func start()

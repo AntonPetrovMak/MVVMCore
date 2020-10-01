@@ -27,8 +27,5 @@ final class CounterCoordinatorFactory: CounterCoordinatorFactoryProtocol {
     viewController.viewModel = viewModel
     return viewController
   }
-  
-  deinit {
-    print(#function + "\(String(describing: self))")
-  }
+
 }

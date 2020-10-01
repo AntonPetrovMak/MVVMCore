@@ -60,7 +60,6 @@ class CounterViewController: BaseViewController {
   
   @IBAction func dismissButtonTapped() {
     dismiss(animated: true, completion: nil)
-    //viewModel.didSelectDismissButton()
   }
   
   deinit {
