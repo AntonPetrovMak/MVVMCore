@@ -15,7 +15,11 @@ class MainViewController: BaseViewController {
   // MARK: - @IBAction
   
   @IBAction func showCounter() {
-    viewModel.showCounter()
+    viewModel.showCounter(modalView: false)
+  }
+  
+  @IBAction func presentCounter() {
+    viewModel.showCounter(modalView: true)
   }
   
   @IBAction func showSimpleMovies() {

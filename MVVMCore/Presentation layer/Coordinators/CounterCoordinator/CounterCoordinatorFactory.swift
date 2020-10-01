@@ -9,14 +9,14 @@
 import UIKit
 
 protocol CounterCoordinatorFactoryProtocol {
-  func makeCounterController(with router: CounterRoutingLogic) -> UIViewController
+  func makeCounterController(with router: CounterRoutingLogic, isDismissButtonHidden: Bool) -> UIViewController
   func makeCounterDetailsController(with router: CounterDetailsRoutingLogic, count: Observable<Int>, isDismissButtonHidden: Bool) -> UIViewController
 }
 
 final class CounterCoordinatorFactory: CounterCoordinatorFactoryProtocol {
-  func makeCounterController(with router: CounterRoutingLogic) -> UIViewController {
-    let viewModel = TestViewModel(with: router)
-    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "TestViewController") as! TestViewController
+  func makeCounterController(with router: CounterRoutingLogic, isDismissButtonHidden: Bool) -> UIViewController {
+    let viewModel = CounterViewModel(with: router, isDismissButtonHidden: isDismissButtonHidden)
+    let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "CounterViewController") as! CounterViewController
     viewController.viewModel = viewModel
     return viewController
   }
@@ -26,5 +26,9 @@ final class CounterCoordinatorFactory: CounterCoordinatorFactoryProtocol {
     let viewModel = TestDetailsViewModel(with: router, count: count, isDismissButtonHidden: isDismissButtonHidden)
     viewController.viewModel = viewModel
     return viewController
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
   }
 }

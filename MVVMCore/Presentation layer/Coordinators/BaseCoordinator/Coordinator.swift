@@ -6,7 +6,18 @@
 //  Copyright © 2020 APM. All rights reserved.
 //
 
+import UIKit
+
 protocol Coordinator: class {
+  
+  var id: UUID { get }
+  
+  var parentCoordinator: Coordinator? { get set }
+  
+  var childCoordinators: [UUID: WeakCoordinator] { get }
+  
+  /// NavigationController for coordinator, navigation which used for navigation
+  var navigationController: UINavigationController { get }
   
   /// Present coordinator
   func start()
@@ -19,8 +30,15 @@ protocol Coordinator: class {
   /// Remove coordinator from stack
   func stop()
   
-  /// Get child coordinator
-  /// - Parameters:
-  ///   - type: coordinator type
-  func child<T>(of type: T.Type) -> T?
+  /// Remove child coordinator by id
+  func removeChild(by id: UUID)
+  
+}
+
+class WeakCoordinator {
+  weak var coordinator: Coordinator?
+  
+  init(coordinator: Coordinator) {
+    self.coordinator = coordinator
+  }
 }

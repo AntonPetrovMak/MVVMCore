@@ -8,28 +8,33 @@
 
 import UIKit
 
-protocol MainCoordinatorProtocol: Coordinator {
-  var router: (MainDataPassing & CoordinatorRouting)! { get set }
-  
-  func showCounter()
-  func showMovies(with type: MoviesCoordinatorModels.ViewType)
+protocol MainRoutingLogic {
+  func routeToCounter(modalView: Bool)
+  func routeToMovies(with type: MoviesCoordinatorModels.ViewType)
 }
 
-final class MainCoordinator: BaseCoordinator, MainCoordinatorProtocol {
-  var router: (MainDataPassing & CoordinatorRouting)!
+final class MainCoordinator: BaseCoordinator<MainCoordinatorFactoryProtocol> {
   
   override func start() {
-    router.route(with: window)
+    let mainViewController = factory.makeMainController(with: self)
+    navigationController.setViewControllers([mainViewController], animated: true)
   }
   
-  func showCounter() {
-    let coordinator = assembly.makeCoordinator(of: CounterCoordinatorProtocol.self, with: window)
+}
+
+// MARK: MainRoutingLogic
+
+extension MainCoordinator: MainRoutingLogic {
+  
+  func routeToCounter(modalView: Bool) {
+    let coordinator = assembly.makeCounterCoordinator(with: navigationController, modalView: modalView)
     start(coordinator: coordinator)
   }
   
-  func showMovies(with type: MoviesCoordinatorModels.ViewType) {
-    let coordinator = assembly.makeCoordinator(of: MoviesCoordinatorProtocol.self, with: window)
-    coordinator.router.type = type
+  func routeToMovies(with type: MoviesCoordinatorModels.ViewType) {
+    let coordinator = assembly.makeMoviesCoordinator(with: navigationController, moviesModelsFactory: type.modelsFactory)
     start(coordinator: coordinator)
   }
+  
+  
 }

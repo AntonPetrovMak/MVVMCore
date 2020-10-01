@@ -1,5 +1,5 @@
 //
-//  TestViewController.swift
+//  CounterViewController.swift
 //  MVVMCore
 //
 //  Created by Petrov Anton on 5/18/20.
@@ -8,20 +8,22 @@
 
 import UIKit
 
-class TestViewController: BaseViewController {
+class CounterViewController: BaseViewController {
   
   @IBOutlet var countLabel: UILabel!
   @IBOutlet var pushButton: UIButton!
   @IBOutlet var presentButton: UIButton!
   @IBOutlet var clearButton: UIButton!
   @IBOutlet var activityIndicator: UIActivityIndicatorView!
+  @IBOutlet var dismissButton: UIButton!
   
-  var viewModel: TestViewModelProtocol!
+  var viewModel: CounterViewModelProtocol!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     bind()
     viewModel.viewDidLoad()
+    dismissButton.isHidden = viewModel.isDismissButtonHidden
   }
   
   func bind() {
@@ -32,6 +34,10 @@ class TestViewController: BaseViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     viewModel.viewWillAppear()
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
   }
   
   // MARK: - Private
@@ -50,5 +56,14 @@ class TestViewController: BaseViewController {
   
   @IBAction func clearButtonTouched() {
     viewModel.clearData()
+  }
+  
+  @IBAction func dismissButtonTapped() {
+    dismiss(animated: true, completion: nil)
+    //viewModel.didSelectDismissButton()
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
   }
 }

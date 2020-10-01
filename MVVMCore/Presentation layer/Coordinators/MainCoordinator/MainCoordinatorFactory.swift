@@ -9,14 +9,14 @@
 import UIKit
 
 protocol MainCoordinatorFactoryProtocol {
-  func makeMainController(with router: MainRoutingLogic) -> UINavigationController
+  func makeMainController(with router: MainRoutingLogic) -> UIViewController
 }
 
 final class MainCoordinatorFactory: MainCoordinatorFactoryProtocol {
-  func makeMainController(with router: MainRoutingLogic) -> UINavigationController {
+  func makeMainController(with router: MainRoutingLogic) -> UIViewController {
     let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "MainViewController") as! MainViewController
     let viewModel = MainViewModel(router: router)
     viewController.viewModel = viewModel
-    return UINavigationController(rootViewController: viewController)
+    return viewController
   }
 }

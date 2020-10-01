@@ -1,5 +1,5 @@
 //
-//  TestViewModel.swift
+//  CounterViewModel.swift
 //  MVVMCore
 //
 //  Created by Petrov Anton on 5/18/20.
@@ -8,48 +8,50 @@
 
 import Foundation
 
-protocol TestViewModelInput {
+protocol CounterViewModelInput {
   func viewDidLoad()
   func viewWillAppear()
   func clearData()
   func pushCounter()
   func presentCounter()
+  func didSelectDismissButton()
 }
 
-protocol TestViewModelOutput: BaseViewModelOutput {
+protocol CounterViewModelOutput: BaseViewModelOutput {
+  var isDismissButtonHidden: Bool { get }
+  
   var count: Observable<Int> { get }
 }
 
-protocol CounterRoutingLogic {
-  func routeToDetails(with context: CounterCoordinatorModels.Context)
-}
+protocol CounterViewModelProtocol: CounterViewModelInput, CounterViewModelOutput { }
 
-protocol TestViewModelProtocol: TestViewModelInput, TestViewModelOutput { }
-
-class TestViewModel: TestViewModelProtocol {
+class CounterViewModel: CounterViewModelProtocol {
   
   // MARK: - MVVMViewModel
   
+  
+  var isDismissButtonHidden: Bool
   let router: CounterRoutingLogic
   
-  init(with router: CounterRoutingLogic) {
+  init(with router: CounterRoutingLogic, isDismissButtonHidden: Bool) {
     self.router = router
+    self.isDismissButtonHidden = isDismissButtonHidden
   }
   
-  // MARK: - TestViewModelOutput
+  // MARK: - CounterViewModelOutput
   
   var count: Observable<Int> = Observable(0)
   var isLoading: Observable<Bool> = Observable(false)
   var error: Observable<String?> = Observable(nil)
   
-  // MARK: - TestViewModelInput
+  // MARK: - CounterViewModelInput
   
   func viewDidLoad() {
-    print("TestViewModel: viewDidLoad")
+    print("CounterViewModel: viewDidLoad")
   }
   
   func viewWillAppear() {
-    print("TestViewModel: viewWillAppear")
+    print("CounterViewModel: viewWillAppear")
   }
   
   func clearData() {
@@ -68,5 +70,13 @@ class TestViewModel: TestViewModelProtocol {
   
   func presentCounter() {
     router.routeToDetails(with: .presentForward(count: count))
+  }
+  
+  func didSelectDismissButton() {
+    print(#function + "\(String(describing: self))")
+  }
+  
+  deinit {
+    print(#function + "\(String(describing: self))")
   }
 }

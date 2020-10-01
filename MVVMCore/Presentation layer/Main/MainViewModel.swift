@@ -9,17 +9,12 @@
 import Foundation
 
 protocol MainViewModelInput {
-  func showCounter()
+  func showCounter(modalView: Bool)
   func showSimpleMovies()
   func showFullMovies()
 }
 
 protocol MainViewModelProtocol: MainViewModelInput { }
-
-protocol MainRoutingLogic {
-  func routeToCounter()
-  func routeToMovies(with type: MoviesCoordinatorModels.ViewType)
-}
 
 struct MainViewModel: MainViewModelProtocol {
   
@@ -31,8 +26,8 @@ struct MainViewModel: MainViewModelProtocol {
   
   // MARK: - MainViewModelInput
   
-  func showCounter() {
-    router.routeToCounter()
+  func showCounter(modalView: Bool) {
+    router.routeToCounter(modalView: modalView)
   }
   
   func showSimpleMovies() {

@@ -8,17 +8,24 @@
 
 import UIKit
 
-class BaseCoordinator: Coordinator {
-  weak private(set) var parentCoordinator: BaseCoordinator?
+class BaseCoordinator<FactoryType>: NSObject, Coordinator {
+  
   let assembly: CoordinatorAssembly
-  let window: UIWindow
   
-  private let id = UUID().uuidString
-  private lazy var childCoordinators: Set<BaseCoordinator> = []
+  let factory: FactoryType
   
-  init(assembly: CoordinatorAssembly, window: UIWindow) {
+  weak var parentCoordinator: Coordinator?
+  
+  var navigationController: UINavigationController
+  
+  var id = UUID()
+  
+  var childCoordinators: [UUID: WeakCoordinator] = [:]
+  
+  init(assembly: CoordinatorAssembly, navigationController: UINavigationController, factory: FactoryType) {
     self.assembly = assembly
-    self.window = window
+    self.navigationController = navigationController
+    self.factory = factory
   }
   
   func start() {
@@ -26,32 +33,32 @@ class BaseCoordinator: Coordinator {
   }
   
   func start(coordinator: Coordinator) {
-    guard let coordinator = coordinator as? BaseCoordinator else { return }
-    childCoordinators.insert(coordinator)
+    childCoordinators[coordinator.id] = WeakCoordinator(coordinator: coordinator)
     coordinator.parentCoordinator = self
     coordinator.start()
   }
   
   func stop() {
-    childCoordinators.forEach { $0.stop(); $0.parentCoordinator = nil }
+    childCoordinators.values.forEach { $0.coordinator?.stop() }
     childCoordinators.removeAll()
-    parentCoordinator?.childCoordinators.remove(self)
+    parentCoordinator?.removeChild(by: id)
     parentCoordinator = nil
   }
   
-  func child<T>(of type: T.Type) -> T? {
-    return childCoordinators.first { $0 is T } as? T
+  func removeChild(by id: UUID) {
+    childCoordinators.removeValue(forKey: id)
+  }
+  
+  deinit {
+    stop()
+    print(#function + "\(String(describing: self))")
   }
 }
 
-extension BaseCoordinator: Equatable {
+// MARK: - Equatable
+
+extension BaseCoordinator {
   static func == (lhs: BaseCoordinator, rhs: BaseCoordinator) -> Bool {
     return lhs.id == rhs.id
-  }
-}
-
-extension BaseCoordinator: Hashable {
-  func hash(into hasher: inout Hasher) {
-    hasher.combine(id)
   }
 }

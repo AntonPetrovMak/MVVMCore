@@ -10,9 +10,8 @@ import UIKit
 
 protocol CoordinatorAssembly {
   
-  /// Create coordinator with specific type
-  /// - Parameters:
-  ///   - type: coordinator type
-  ///   - window: coordinator window
-  func makeCoordinator<T>(of type: T.Type, with window: UIWindow) -> T
+  func makeMainCoordinator(with navigation: UINavigationController) -> Coordinator
+  func makeCounterCoordinator(with navigation: UINavigationController, modalView: Bool) -> Coordinator
+  func makeMoviesCoordinator(with navigation: UINavigationController, moviesModelsFactory: MoviesModelsFactory) -> Coordinator
+  
 }

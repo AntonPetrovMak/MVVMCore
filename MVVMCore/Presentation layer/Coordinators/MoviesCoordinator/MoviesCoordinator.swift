@@ -8,14 +8,21 @@
 
 import UIKit
 
-protocol MoviesCoordinatorProtocol: Coordinator {
-  var router: (MoviesDataPassing & CoordinatorRouting)! { get set }
-}
-
-final class MoviesCoordinator: BaseCoordinator, MoviesCoordinatorProtocol {
-  var router: (MoviesDataPassing & CoordinatorRouting)!
+final class MoviesCoordinator: BaseCoordinator<MoviesCoordinatorFactoryProtocol> {
+  
+  var moviesModelsFactory: MoviesModelsFactory
+  
+  init(assembly: CoordinatorAssembly,
+       navigationController: UINavigationController,
+       factory: MoviesCoordinatorFactoryProtocol,
+       moviesModelsFactory: MoviesModelsFactory) {
+    self.moviesModelsFactory = moviesModelsFactory
+    super.init(assembly: assembly, navigationController: navigationController, factory: factory)
+  }
   
   override func start() {
-    router.route(with: window)
+    let viewController = factory.makeMovieController(with: moviesModelsFactory)
+    navigationController.pushViewController(viewController, animated: true)
   }
+  
 }
