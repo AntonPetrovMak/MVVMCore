@@ -9,12 +9,12 @@
 import UIKit
 
 protocol MoviesCoordinatorFactoryProtocol {
-  func makeMovieController(with router:MoviesRoutingLogic, factory: MoviesModelsFactory) -> UIViewController
+  func makeMovieController(with router: MoviesRoutingLogic, factory: MoviesModelsFactory) -> UIViewController
 }
 
 final class MoviesCoordinatorFactory: MoviesCoordinatorFactoryProtocol {
   
-  func makeMovieController(with router:MoviesRoutingLogic, factory: MoviesModelsFactory) -> UIViewController {
+  func makeMovieController(with router: MoviesRoutingLogic, factory: MoviesModelsFactory) -> UIViewController {
     let store = MoviesListNetworkStore()
     let worker = MoviesListWorker(store: store)
     let viewModel = MoviesListViewModel(router: router, worker: worker, moviesFactory: factory)

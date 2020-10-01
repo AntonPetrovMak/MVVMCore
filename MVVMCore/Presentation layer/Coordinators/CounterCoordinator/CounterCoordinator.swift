@@ -56,8 +56,12 @@ extension CounterCoordinator: CounterRoutingLogic {
 extension CounterCoordinator: CounterDetailsRoutingLogic {
   
   func routeToRoot() {
-    parentCoordinator?.navigationController?.popToRootViewController(animated: true)
-    //navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+    if modalView {
+      navigationController?.dismiss(animated: true, completion: nil)
+    } else {
+      navigationController?.popToRootViewController(animated: true)
+      navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+    }
   }
   
 }
