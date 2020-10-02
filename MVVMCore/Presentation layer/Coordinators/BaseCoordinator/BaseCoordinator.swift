@@ -37,10 +37,6 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
     switch style {
     case .push:
       navigationController?.pushViewController(rootViewController, animated: animated)
-    case .presentSecondarySteck:
-      let secondaryNavigation = UINavigationController(rootViewController: rootViewController)
-      parentCoordinator?.navigationController?.present(secondaryNavigation, animated: animated, completion: nil)
-      navigationController = secondaryNavigation
     case .setRoot:
       navigationController?.setViewControllers([rootViewController], animated: animated)
     case .custom: ()
