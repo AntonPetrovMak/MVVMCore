@@ -16,12 +16,12 @@ final class BaseCoordinatorAssembly: CoordinatorAssembly {
     return coordinator
   }
   
-  func makeCounterCoordinator(with navigation: UINavigationController?, modalView: Bool) -> Coordinator {
+  func makeCounterCoordinator(with navigation: UINavigationController?, isDismissButtonHidden: Bool) -> Coordinator {
     let factory = CounterCoordinatorFactory()
     let coordinator = CounterCoordinator(assembly: self,
                                          navigationController: navigation,
                                          factory: factory,
-                                         modalView: modalView)
+                                         isDismissButtonHidden: isDismissButtonHidden)
     return coordinator
   }
   

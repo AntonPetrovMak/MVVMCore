@@ -28,12 +28,12 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
     self.factory = factory
   }
   
-  func setupRootViewController() -> UIViewController {
+  func createRootViewController() -> UIViewController {
     return UIViewController()
   }
   
   func start(style: CoordinatorPresentationStyle, animated: Bool) {
-    let rootViewController = setupRootViewController()
+    let rootViewController = createRootViewController()
     switch style {
     case .push:
       navigationController?.pushViewController(rootViewController, animated: animated)
@@ -54,6 +54,7 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
   }
   
   func stop() {
+    //TODO: remove ref and pop to root
     childCoordinators.values.forEach { $0.coordinator?.stop() }
     childCoordinators.removeAll()
     parentCoordinator?.removeChild(by: id)

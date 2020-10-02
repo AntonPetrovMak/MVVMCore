@@ -7,8 +7,5 @@
 //
 
 enum CounterCoordinatorModels {
-  enum Context {
-    case pushForward(count: Int, didChangeCount: (Int) -> Void)
-    case presentForward(count: Int, didChangeCount: (Int) -> Void)
-  }
+  
 }

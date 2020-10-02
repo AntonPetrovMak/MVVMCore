@@ -18,18 +18,23 @@ protocol Coordinator: class {
   /// References on the child coordinators
   var childCoordinators: [UUID: WeakCoordinator] { get }
   
-  /// NavigationController for coordinator, navigation which used for navigation
+  /// `navigationController` in which all navigation for the current coordination takes place
   var navigationController: UINavigationController? { get }
   
-  /// Present coordinator
+  /// This method in which describe an implementation of how to present screen
+  /// - Parameters:
+  ///   - style: determinate how would be presented coordinator
+  ///   - animated: animated
   func start(style: CoordinatorPresentationStyle, animated: Bool)
   
   /// Present child coordinator
   /// - Parameters:
   ///   - coordinator: child coordinator
+  ///   - style: determinate how would be presented coordinator
+  ///   - animated: animated
   func start(coordinator: Coordinator, style: CoordinatorPresentationStyle, animated: Bool)
   
-  /// Remove coordinator from stack
+  /// Pop coordinator from stack. Removing the dependency for a parent and child coordinators
   func stop()
   
   /// Remove child coordinator by id

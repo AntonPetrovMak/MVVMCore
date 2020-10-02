@@ -11,7 +11,7 @@ import UIKit
 protocol CoordinatorAssembly {
   
   func makeMainCoordinator(with navigation: UINavigationController?) -> Coordinator
-  func makeCounterCoordinator(with navigation: UINavigationController?, modalView: Bool) -> Coordinator
+  func makeCounterCoordinator(with navigation: UINavigationController?, isDismissButtonHidden: Bool) -> Coordinator
   func makeMoviesCoordinator(with navigation: UINavigationController?, moviesModelsFactory: MoviesModelsFactory) -> Coordinator
   
 }

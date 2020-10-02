@@ -15,7 +15,7 @@ protocol MainRoutingLogic {
 
 final class MainCoordinator: BaseCoordinator<MainCoordinatorFactoryProtocol> {
   
-  override func setupRootViewController() -> UIViewController {
+  override func createRootViewController() -> UIViewController {
     return factory.makeMainController(with: self)
   }
   
@@ -26,7 +26,7 @@ final class MainCoordinator: BaseCoordinator<MainCoordinatorFactoryProtocol> {
 extension MainCoordinator: MainRoutingLogic {
   
   func routeToCounter(modalView: Bool) {
-    let coordinator = assembly.makeCounterCoordinator(with: navigationController, modalView: modalView)
+    let coordinator = assembly.makeCounterCoordinator(with: navigationController, isDismissButtonHidden: modalView)
     start(coordinator: coordinator, style: modalView ? .presentSecondarySteck : .push)
   }
   

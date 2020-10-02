@@ -9,20 +9,21 @@
 import UIKit
 
 protocol CounterRoutingLogic {
-  func routeToDetails(with context: CounterCoordinatorModels.Context)
+  func routeWithPushDetails(count: Int, didChangeCount: @escaping (Int) -> Void)
+  func routeWithPresentDetails(count: Int, didChangeCount: @escaping (Int) -> Void)
 }
 
 final class CounterCoordinator: BaseCoordinator<CounterCoordinatorFactoryProtocol> {
   
-  private var modalView: Bool
+  private var isDismissButtonHidden: Bool
   
-  init(assembly: CoordinatorAssembly, navigationController: UINavigationController?, factory: CounterCoordinatorFactoryProtocol, modalView: Bool) {
-    self.modalView = modalView
+  init(assembly: CoordinatorAssembly, navigationController: UINavigationController?, factory: CounterCoordinatorFactoryProtocol, isDismissButtonHidden: Bool) {
+    self.isDismissButtonHidden = isDismissButtonHidden
     super.init(assembly: assembly, navigationController: navigationController, factory: factory)
   }
   
-  override func setupRootViewController() -> UIViewController {
-    return factory.makeCounterController(with: self, isDismissButtonHidden: !modalView)
+  override func createRootViewController() -> UIViewController {
+    return factory.makeCounterController(with: self, isDismissButtonHidden: !isDismissButtonHidden)
   }
   
 }
@@ -30,17 +31,17 @@ final class CounterCoordinator: BaseCoordinator<CounterCoordinatorFactoryProtoco
 // MARK: - CounterRoutingLogic
 
 extension CounterCoordinator: CounterRoutingLogic {
-  
-  func routeToDetails(with context: CounterCoordinatorModels.Context) {
-    switch context {
-    case .pushForward(let count, let didChangeCount):
-      let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true, didChangeCount: didChangeCount)
-      navigationController?.pushViewController(viewController, animated: true)
-    case .presentForward(let count, let didChangeCount):
-      let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false, didChangeCount: didChangeCount)
-      navigationController?.present(viewController, animated: true)
-    }
+
+  func routeWithPushDetails(count: Int, didChangeCount: @escaping (Int) -> Void) {
+    let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true, didChangeCount: didChangeCount)
+    navigationController?.pushViewController(viewController, animated: true)
   }
+  
+  func routeWithPresentDetails(count: Int, didChangeCount: @escaping (Int) -> Void) {
+    let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false, didChangeCount: didChangeCount)
+    navigationController?.present(viewController, animated: true)
+  }
+  
   
 }
 
@@ -49,7 +50,7 @@ extension CounterCoordinator: CounterRoutingLogic {
 extension CounterCoordinator: CounterDetailsRoutingLogic {
   
   func routeToRoot() {
-    if modalView {
+    if isDismissButtonHidden {
       navigationController?.dismiss(animated: true, completion: nil)
     } else {
       navigationController?.popToRootViewController(animated: true)
