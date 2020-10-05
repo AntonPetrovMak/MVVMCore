@@ -52,6 +52,10 @@ enum CoordinatorPresentationStyle {
   
   /// `push` case added a ViewController in the end of the navigation stack
   case push
+  
+  /// `presentSecondarySteck` case presents a ViewController in the new navigation, create new NavigationController with ViewController and present NavigationController
+  case presentSecondarySteck
+
 }
 
 // MARK: - WeakCoordinator

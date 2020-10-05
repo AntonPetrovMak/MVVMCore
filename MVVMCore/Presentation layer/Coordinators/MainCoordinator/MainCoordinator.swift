@@ -28,10 +28,8 @@ extension MainCoordinator: MainRoutingLogic {
   func routeToCounter(modalView: Bool) {
     
     if modalView {
-      let navigation = UINavigationController()
-      let coordinator = assembly.makeCounterCoordinator(with: navigation, isDismissButtonHidden: true)
-      start(coordinator: coordinator, style: .setRoot)
-      navigationController.present(navigation, animated: true, completion: nil)
+      let coordinator = assembly.makeCounterCoordinator(with: navigationController, isDismissButtonHidden: true)
+      start(coordinator: coordinator, style: .presentSecondarySteck)
     } else {
       let coordinator = assembly.makeCounterCoordinator(with: navigationController, isDismissButtonHidden: false)
       start(coordinator: coordinator, style: .push)
