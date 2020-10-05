@@ -16,13 +16,13 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
   
   weak var parentCoordinator: Coordinator?
   
-  weak var navigationController: UINavigationController?
+  private(set) unowned var navigationController: UINavigationController
   
-  var id = UUID()
+  let id = UUID()
   
-  var childCoordinators: [UUID: WeakCoordinator] = [:]
+  private(set) var childCoordinators: [UUID: WeakCoordinator] = [:]
   
-  init(assembly: CoordinatorAssembly, navigationController: UINavigationController?, factory: FactoryType) {
+  init(assembly: CoordinatorAssembly, navigationController: UINavigationController, factory: FactoryType) {
     self.assembly = assembly
     self.navigationController = navigationController
     self.factory = factory
@@ -36,9 +36,9 @@ class BaseCoordinator<FactoryType>: NSObject, Coordinator {
     let rootViewController = createRootViewController()
     switch style {
     case .push:
-      navigationController?.pushViewController(rootViewController, animated: animated)
+      navigationController.pushViewController(rootViewController, animated: animated)
     case .setRoot:
-      navigationController?.setViewControllers([rootViewController], animated: animated)
+      navigationController.setViewControllers([rootViewController], animated: animated)
     case .custom: ()
     }
   }

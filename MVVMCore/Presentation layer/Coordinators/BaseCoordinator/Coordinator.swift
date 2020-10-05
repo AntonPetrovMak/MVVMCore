@@ -19,7 +19,7 @@ protocol Coordinator: class {
   var childCoordinators: [UUID: WeakCoordinator] { get }
   
   /// `navigationController` in which all navigation for the current coordination takes place
-  var navigationController: UINavigationController? { get }
+  var navigationController: UINavigationController { get }
   
   /// This method in which describe an implementation of how to present screen
   /// - Parameters:

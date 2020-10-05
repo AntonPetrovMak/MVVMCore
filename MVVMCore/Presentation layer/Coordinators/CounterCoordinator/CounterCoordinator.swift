@@ -17,7 +17,7 @@ final class CounterCoordinator: BaseCoordinator<CounterCoordinatorFactoryProtoco
   
   private var isDismissButtonHidden: Bool
   
-  init(assembly: CoordinatorAssembly, navigationController: UINavigationController?, factory: CounterCoordinatorFactoryProtocol, isDismissButtonHidden: Bool) {
+  init(assembly: CoordinatorAssembly, navigationController: UINavigationController, factory: CounterCoordinatorFactoryProtocol, isDismissButtonHidden: Bool) {
     self.isDismissButtonHidden = isDismissButtonHidden
     super.init(assembly: assembly, navigationController: navigationController, factory: factory)
   }
@@ -34,12 +34,12 @@ extension CounterCoordinator: CounterRoutingLogic {
 
   func routeWithPushDetails(count: Int, didChangeCount: @escaping (Int) -> Void) {
     let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true, didChangeCount: didChangeCount)
-    navigationController?.pushViewController(viewController, animated: true)
+    navigationController.pushViewController(viewController, animated: true)
   }
   
   func routeWithPresentDetails(count: Int, didChangeCount: @escaping (Int) -> Void) {
     let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false, didChangeCount: didChangeCount)
-    navigationController?.present(viewController, animated: true)
+    navigationController.present(viewController, animated: true)
   }
   
   
@@ -51,10 +51,10 @@ extension CounterCoordinator: CounterDetailsRoutingLogic {
   
   func routeToRoot() {
     if isDismissButtonHidden {
-      navigationController?.dismiss(animated: true, completion: nil)
+      navigationController.dismiss(animated: true, completion: nil)
     } else {
-      navigationController?.popToRootViewController(animated: true)
-      navigationController?.presentedViewController?.dismiss(animated: true, completion: nil)
+      navigationController.popToRootViewController(animated: true)
+      navigationController.presentedViewController?.dismiss(animated: true, completion: nil)
     }
   }
   

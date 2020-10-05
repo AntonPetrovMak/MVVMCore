@@ -17,7 +17,7 @@ final class MoviesCoordinator: BaseCoordinator<MoviesCoordinatorFactoryProtocol>
   var moviesModelsFactory: MoviesModelsFactory
   
   init(assembly: CoordinatorAssembly,
-       navigationController: UINavigationController?,
+       navigationController: UINavigationController,
        factory: MoviesCoordinatorFactoryProtocol,
        moviesModelsFactory: MoviesModelsFactory) {
     self.moviesModelsFactory = moviesModelsFactory
