@@ -136,7 +136,7 @@ protocol Coordinator: class {
 }
 ```
 
-## Coordinator presentation style
+# Coordinator presentation style
 
 Every first ViewController in a coordinator must be added to NavigationController and it can happen in a few ways. This options determined in enum **CoordinatorPresentationStyle**. Also, some of them can implement in the base implementation.
 
@@ -160,7 +160,7 @@ enum CoordinatorPresentationStyle {
 }
 ```
 
-### Example how to use:
+## Example how to use:
 
 * Presentation a main coordinator
 <div align="center">
@@ -213,7 +213,7 @@ let viewController = factory.makeCounterDetailsController(with: self, count: cou
 navigationController?.present(viewController, animated: true)
 ```
 
-## Coordinator live cycle
+# Module live cycle
 
 In the implementation, we keep the child coordinators weak. When the ViewController disappears, it trigged a chain of destroys and all dependencies between objects break in this order:
 1. VIewController -> ViewModel
@@ -223,7 +223,7 @@ In the implementation, we keep the child coordinators weak. When the ViewControl
 <img src="https://user-images.githubusercontent.com/15180933/101641944-0ff30b80-3a3b-11eb-916f-9387dc07ac37.png">
 </div>
 
-## Data passing between modules
+# Data passing between modules
 
 If a module needs concrete data on which it is based. The initialization of the module must be happening with an obviously determinate type of data. Data passing:
 * to destination module - in function parameters
@@ -233,6 +233,8 @@ If a module needs concrete data on which it is based. The initialization of the 
 </div>
 
 # UNIT Testing
+
+// in progress
 
 # Templates
 
