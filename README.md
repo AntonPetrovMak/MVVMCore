@@ -83,11 +83,13 @@ if bind(_ viewModel: ViewModelProtocol) {
 
 If we are going to stick to one architecture, we must define several rules.
 
-:loudspeaker: **Rule #1** Create a Coordinator just if the module has child navigation. Do not need to create a coordinator if the module does not have nested navigation.
+| :loudspeaker: Rule #1 Create a Coordinator only if the module has child navigation. |
+| - |
 
-When we are talking about navigation we assume navigation is a push, pop, present, dismiss. All actions which look like navigation to somewhere.
+When we are talking about navigation we assume navigation is a push, pop, present, dismiss. All actions which look like navigation to somewhere. Do not need to create a coordinator if the module does not have nested navigation.
 
- :loudspeaker: **Rule #2** Each coordinator must have a navigation controller.
+| :loudspeaker: Rule #2 Each coordinator must have a navigation controller. |
+| - |
 
 The second rules are based on the first as each coordinator contains nested navigation it means that must have a navigation controller. Each coordinator has to be created with a parent navigation controller, and internally he can decide whether he wants to use the parent as his main navigation controller or wants to create a new one. (this will be implementation-dependent)
 
