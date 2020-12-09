@@ -1,5 +1,21 @@
 # Clean Architecture + MVVM + Coordinator
 
+## Table of content
+
+* [Clean Architecture](#clean-architecture)
+* [MVVM](#mvvm)
+  * [Data Binding](#data-binding)
+* [Coordinator](#coordinator)
+  * [Summary](#summary)
+  * [Coordinator structure](#coordinator-structure)
+* [MVVM + Coordinator](#mvvm--coordinator)
+* [Module presentation style](#module-presentation-style)
+* [Module live cycle](#module-live-cycle)
+* [Module data passing](#module-data-passing)
+* [UNIT Testing](#unit-testing) (:warning: in progress)
+* [Templates](#templates)
+
+
 ## Clean Architecture
 
 Clean architecture is a software design philosophy that separates the elements of a design into ring levels. The main rule of clean architecture is that code dependencies can only come from the outer levels inward.
@@ -12,7 +28,7 @@ Clean architecture is a software design philosophy that separates the elements o
 * **Presentation Layer** contains UI. Views are coordinated by ViewModels (Presenters) which execute one or many Workers Presentation Layer depends only on the Domain Layer.
 * **Data Layer** contains Store Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data to Domain Models.
 
-## Dependency Direction
+***Dependency Direction**
 * Presentation Layer (MVVM) = ViewModels + Views(UI)
 * Domain Layer = Entities + Workers + Store Interfaces
 * Data Store Layer = Store Implementations + API(Network) + Persistence DB
@@ -36,13 +52,13 @@ The relationships between the three components of the MVVM pattern, just followi
 * The ViewModel has a reference to the Model, but not vice-versa.
 * The View has no reference to the Model or vice-versa. 
 
-# Data Binding
+## Data Binding
 
 Data Binding between View and ViewModel can be done for example with closures, delegates or observables (e.g. RxSwift). Combine and SwiftUI also can be used but only if our minimum supported iOS system is 13. The View has a direct relationship to ViewModel and notifies it whenever an event inside View happens. From ViewModel, there is no direct reference to View (only Data Binding)
 
 In this project, we will use a simple combination of Closure and didSet to avoid third-party dependencies. It is **Observable** class. (Need to add link)
 
-```
+```swift
 // SomeViewModel.swift
 
 var isLoading: Observable<Bool> = Observable(false)
@@ -61,38 +77,17 @@ if bind(_ viewModel: ViewModelProtocol) {
 }
 ```
 
-# MVVM + Coordinator
-
-<div align="center">
-<img src="https://user-images.githubusercontent.com/15180933/101617320-2a1bf200-3a19-11eb-818e-ab2b9e70e988.png">
-</div>
-
-As we see we have to stay original dependencies in Model, View, and ViewModel. We improved MVVM and added some components like Worker, Store, Factory, Coordinator, Assembly. These components do not original of the MVVM approach but they do architecture more modular, logically and reusable.
-
-**Responsibilities:**
-
-* **Worker** - Combines data from User and Repositories. Note: on the internet, you can face with name "Interactor", in our case a Worker has the same responsibility as Interactor
-
-* **Store** - Each Store returns data from a remote data (Network), persistent DB Storage Source or In-memory Data  (Remote or Cached). Note: on the internet, you can face with name "repository", in our case a Store has the same responsibility as Repository
-
-* **Factory** - The Factory pattern is a way to encapsulate the implementation details of creating objects, which adheres to a common base class or interface. The Factory pattern allows the client that receives the created object to use the object return via the common interface without caring about the type of concrete object that is actually created.
-This is a factory pattern which is used to create MVVM submodules. You need to pass Models Factory entities to create module with specific configurations. A factory generates full MVVM module and return ViewController.
-
-* **Coordinator** - Creates independent and reusable module. Is used to navigate inside Coordinator module, passing data between modules and navigation between MVVM submodules.
-
-* **Assembly** - Factory for Coordinators. This module generates a full coordinator instance so we don't need initialize appropriate coordinator one more time.
-
 # Coordinator
 
 ## Summary
 
 If we are going to stick to one architecture, we must define several rules.
 
-> **Rule #1** Create a Coordinator just if the module has child navigation. Do not need to create a coordinator if the module does not have nested navigation.
+:loudspeaker: **Rule #1** Create a Coordinator just if the module has child navigation. Do not need to create a coordinator if the module does not have nested navigation.
 
 When we are talking about navigation we assume navigation is a push, pop, present, dismiss. All actions which look like navigation to somewhere.
 
-> **Rule #2** Each coordinator must have a navigation controller.
+ :loudspeaker: **Rule #2** Each coordinator must have a navigation controller.
 
 The second rules are based on the first as each coordinator contains nested navigation it means that must have a navigation controller. Each coordinator has to be created with a parent navigation controller, and internally he can decide whether he wants to use the parent as his main navigation controller or wants to create a new one. (this will be implementation-dependent)
 
@@ -100,7 +95,7 @@ The second rules are based on the first as each coordinator contains nested navi
 
 All coordinators will be linked. Each coordinators knows about a parent coordinator and children coordinators. Beside main coordinator, as it has been created as first. In result this structure makes linked list. More detail has described below:
 
-```
+```swift
 protocol Coordinator: class {
   
   var id: UUID { get }
@@ -136,13 +131,34 @@ protocol Coordinator: class {
 }
 ```
 
-# Coordinator presentation style
+# MVVM + Coordinator
+
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101617320-2a1bf200-3a19-11eb-818e-ab2b9e70e988.png">
+</div>
+
+As we see we have to stay original dependencies in Model, View, and ViewModel. We improved MVVM and added some components like Worker, Store, Factory, Coordinator, Assembly. These components do not original of the MVVM approach but they do architecture more modular, logically and reusable.
+
+**Responsibilities:**
+
+* **Worker** - Combines data from User and Repositories. Note: on the internet, you can face with name "Interactor", in our case a Worker has the same responsibility as Interactor
+
+* **Store** - Each Store returns data from a remote data (Network), persistent DB Storage Source or In-memory Data  (Remote or Cached). Note: on the internet, you can face with name "repository", in our case a Store has the same responsibility as Repository
+
+* **Factory** - The Factory pattern is a way to encapsulate the implementation details of creating objects, which adheres to a common base class or interface. The Factory pattern allows the client that receives the created object to use the object return via the common interface without caring about the type of concrete object that is actually created.
+This is a factory pattern which is used to create MVVM submodules. You need to pass Models Factory entities to create module with specific configurations. A factory generates full MVVM module and return ViewController.
+
+* **Coordinator** - Creates independent and reusable module. Is used to navigate inside Coordinator module, passing data between modules and navigation between MVVM submodules.
+
+* **Assembly** - Factory for Coordinators. This module generates a full coordinator instance so we don't need initialize appropriate coordinator one more time.
+
+# Module presentation style
 
 Every first ViewController in a coordinator must be added to NavigationController and it can happen in a few ways. This options determined in enum **CoordinatorPresentationStyle**. Also, some of them can implement in the base implementation.
 
 **Note:** *This presentation relates only to a coordinator and does not relate to MVVM modules (without a coordinator). It describes how to be presented  base view controller of coordinator on a navigation controller.*
 
-```
+```swift
 enum CoordinatorPresentationStyle {
   
    /// `custom` case using for custom presentation coordinator, in this case needs to override `start` method and describe needed presentation
@@ -160,14 +176,14 @@ enum CoordinatorPresentationStyle {
 }
 ```
 
-## Example how to use:
+***Example how to use:***
 
 * Presentation a main coordinator
 <div align="center">
 <img src="https://user-images.githubusercontent.com/15180933/101617135-ede89180-3a18-11eb-8e6e-c1b111e4ed4a.png">
 </div>
 
-```
+```swift
 let coordinator = baseAssembly.makeMainCoordinator(with: navigation)
 mainCoordinator = coordinator
 mainCoordinator?.start(style: .setRoot, animated: false)
@@ -178,7 +194,7 @@ mainCoordinator?.start(style: .setRoot, animated: false)
 <img src="https://user-images.githubusercontent.com/15180933/101617134-ed4ffb00-3a18-11eb-9e44-fc338279ee8f.png">
 </div>
 
-```
+```swift
 let coordinator = assembly.makeMoviesCoordinator(with: navigationController)
 start(coordinator: coordinator, style: .push)
 ```
@@ -188,7 +204,7 @@ start(coordinator: coordinator, style: .push)
 <img src="https://user-images.githubusercontent.com/15180933/101617131-ec1ece00-3a18-11eb-9b72-52f9121bc2d5.png">
 </div>
 
-```
+```swift
 let coordinator = assembly.makeCounterCoordinator(with: navigationController, isDismissButtonHidden: true)
 start(coordinator: coordinator, style: .presentSecondarySteck)
 ```
@@ -198,7 +214,7 @@ start(coordinator: coordinator, style: .presentSecondarySteck)
 <img src="https://user-images.githubusercontent.com/15180933/101617125-eb863780-3a18-11eb-9e95-16bdf0bfc769.png">
 </div>
 
-```
+```swift
 let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true, didChangeCount: didChangeCount)
 navigationController?.pushViewController(viewController, animated: true)
 ```
@@ -208,7 +224,7 @@ navigationController?.pushViewController(viewController, animated: true)
 <img src="https://user-images.githubusercontent.com/15180933/101617122-ea550a80-3a18-11eb-91b8-e5ee3933e8da.png">
 </div>
 
-```
+```swift
 let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false, didChangeCount: didChangeCount)
 navigationController?.present(viewController, animated: true)
 ```
@@ -223,7 +239,7 @@ In the implementation, we keep the child coordinators weak. When the ViewControl
 <img src="https://user-images.githubusercontent.com/15180933/101641944-0ff30b80-3a3b-11eb-916f-9387dc07ac37.png">
 </div>
 
-# Data passing between modules
+# Module data passing
 
 If a module needs concrete data on which it is based. The initialization of the module must be happening with an obviously determinate type of data. Data passing:
 * to destination module - in function parameters
