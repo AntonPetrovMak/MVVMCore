@@ -8,9 +8,9 @@ Clean architecture is a software design philosophy that separates the elements o
 <img src="https://user-images.githubusercontent.com/15180933/83876559-b8997900-a741-11ea-8c7b-5d559778b9f8.png" >
 </div>
 
-* Domain Layer (Business logic) is the inner-most part of the onion (without dependencies to other layers, it is totally isolated). It contains Entities(Business Models), Workers, and Store Interfaces. This layer could be potentially reused within different projects. Such separation allows for not using the host app within the test target because no dependencies (also 3rd party) are needed — this makes the Domain Workers tests take just a few seconds. Note: Domain Layer should not include anything from other layers(e.g Presentation — UIKit or SwiftUI or Data Layer — Mapping Codable)
-* Presentation Layer contains UI. Views are coordinated by ViewModels (Presenters) which execute one or many Workers Presentation Layer depends only on the Domain Layer.
-* Data Layer contains Store Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data to Domain Models.
+* **Domain Layer** (Business logic) is the inner-most part of the onion (without dependencies to other layers, it is totally isolated). It contains Entities(Business Models), Workers, and Store Interfaces. This layer could be potentially reused within different projects. Such separation allows for not using the host app within the test target because no dependencies (also 3rd party) are needed — this makes the Domain Workers tests take just a few seconds. Note: Domain Layer should not include anything from other layers(e.g Presentation — UIKit or SwiftUI or Data Layer — Mapping Codable)
+* **Presentation Layer** contains UI. Views are coordinated by ViewModels (Presenters) which execute one or many Workers Presentation Layer depends only on the Domain Layer.
+* **Data Layer** contains Store Implementations and one or many Data Sources. Repositories are responsible for coordinating data from different Data Sources. Data Source can be Remote or Local (for example persistent database). Data Layer depends only on the Domain Layer. In this layer, we can also add mapping of Network JSON Data to Domain Models.
 
 ## Dependency Direction
 * Presentation Layer (MVVM) = ViewModels + Views(UI)
@@ -88,11 +88,11 @@ This is a factory pattern which is used to create MVVM submodules. You need to p
 
 If we are going to stick to one architecture, we must define several rules.
 
-**Rule #1 Create a Coordinator just if the module has child navigation. Do not need to create a coordinator if the module does not have nested navigation.**
+> **Rule #1** Create a Coordinator just if the module has child navigation. Do not need to create a coordinator if the module does not have nested navigation.
 
 When we are talking about navigation we assume navigation is a push, pop, present, dismiss. All actions which look like navigation to somewhere.
 
-**Rule #2 Each coordinator must have a navigation controller.**
+> **Rule #2** Each coordinator must have a navigation controller.
 
 The second rules are based on the first as each coordinator contains nested navigation it means that must have a navigation controller. Each coordinator has to be created with a parent navigation controller, and internally he can decide whether he wants to use the parent as his main navigation controller or wants to create a new one. (this will be implementation-dependent)
 
@@ -215,7 +215,22 @@ navigationController?.present(viewController, animated: true)
 
 ## Coordinator live cycle
 
+In the implementation, we keep the child coordinators weak. When the ViewController disappears, it trigged a chain of destroys and all dependencies between objects break in this order:
+1. VIewController -> ViewModel
+2. ViewModel -> Coordinator (after this step stays one weak reference on a coordinator from child array.)
+3. Coordinator (patent) -> Coordinator (when the coordinator deinitializes, it removes references on itself from the parent and recursive called *stop()* for the children)
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101641944-0ff30b80-3a3b-11eb-916f-9387dc07ac37.png">
+</div>
+
 ## Data passing between modules
+
+If a module needs concrete data on which it is based. The initialization of the module must be happening with an obviously determinate type of data. Data passing:
+* to destination module - in function parameters
+* from destination module - notify using closure & delegate 
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101642694-f3a39e80-3a3b-11eb-8aaf-e78fa2a3af9d.png">
+</div>
 
 # UNIT Testing
 
