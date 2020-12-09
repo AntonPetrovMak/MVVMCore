@@ -60,27 +60,30 @@ if bind(_ viewModel: ViewModelProtocol) {
   }
 }
 ```
-# MVVM base interfaces
-
-Using any of the architectural patterns, we need to rely on base classes or protocols. This core ensures the integrity of the architecture. Since Swift is a protocol-oriented language and is easy to work with, we will use a protocol approach.
+# MVVM + Coordinator
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/15180933/83877405-2a25f700-a743-11ea-89eb-9f4b2cbfc5f8.png" >
+<img src="https://user-images.githubusercontent.com/15180933/101611964-cdb5d400-3a12-11eb-8277-e453a28aec18.png" >
 </div>
 
-**Entities descriptions:**
+As we see we have to stay original dependencies in Model, View, and ViewModel. We improved MVVM and added some components like Worker, Store, Factory, Coordinator, Assembly. These components do not original of the MVVM approach but they do architecture more modular, logically and reusable.
 
-* **MVVMViewModel** - As use can see on diagram above, ViewModel has not any references to ViewController. So in the ViewModel focused a business logic and it determines when to make transitions. The ViewModel should know about the Router and keep strong reference on it, that have opportunity to notify the router in time.
+**Responsibilities:**
 
-* **MVVMViewController** - ViewController must maintain a strong link to the ViewModel. Do not use the MVVMViewModel interface as associated type in ViewController, since we should not have access to the router through the ViewModel. We must define our custom protocol, which will be implemented by ViewModel and set it as associated type in ViewController.
+* **Worker** - Combines data from User and Repositories. Note: on the internet, you can face with name "Interactor", in our case a Worker has the same responsibility as Interactor
 
-* **MVVMRouter** - Router must keep a weak reference on ViewController that avoids a retain cycle. It is worth noting that the router keeps a reference to the base controller and transfers it from module to module. As result that every modul can have a reference to the base controller (not parent).
+* **Store** - Each Store returns data from a remote data (Network), persistent DB Storage Source or In-memory Data  (Remote or Cached). Note: on the internet, you can face with name "repository", in our case a Store has the same responsibility as Repository
 
-# Мodule example
+* **Factory** - The Factory pattern is a way to encapsulate the implementation details of creating objects, which adheres to a common base class or interface. The Factory pattern allows the client that receives the created object to use the object return via the common interface without caring about the type of concrete object that is actually created.
+This is a factory pattern which is used to create MVVM submodules. You need to pass Models Factory entities to create module with specific configurations. A factory generates full MVVM module and return ViewController.
 
-<div align="center">
-<img src="https://user-images.githubusercontent.com/15180933/83881377-357c2100-a749-11ea-9607-4b31f03bb260.png" >
-</div>
+* **Coordinator** - Creates independent and reusable module. Is used to navigate inside Coordinator module, passing data between modules and navigation between MVVM submodules.
+
+* **Assembly** - Factory for Coordinators. This module generates a full coordinator instance so we don't need initialize appropriate coordinator one more time.
+
+# Coordinator
+
+# UNIT Testing
 
 # Templates
 
