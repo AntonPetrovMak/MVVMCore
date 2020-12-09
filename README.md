@@ -1,4 +1,4 @@
-# Clean Architecture + MVVM + Router
+# Clean Architecture + MVVM + Coordinator
 
 ## Clean Architecture
 
@@ -60,10 +60,11 @@ if bind(_ viewModel: ViewModelProtocol) {
   }
 }
 ```
+
 # MVVM + Coordinator
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/15180933/101611964-cdb5d400-3a12-11eb-8277-e453a28aec18.png" >
+<img src="https://user-images.githubusercontent.com/15180933/101617320-2a1bf200-3a19-11eb-818e-ab2b9e70e988.png">
 </div>
 
 As we see we have to stay original dependencies in Model, View, and ViewModel. We improved MVVM and added some components like Worker, Store, Factory, Coordinator, Assembly. These components do not original of the MVVM approach but they do architecture more modular, logically and reusable.
@@ -82,6 +83,139 @@ This is a factory pattern which is used to create MVVM submodules. You need to p
 * **Assembly** - Factory for Coordinators. This module generates a full coordinator instance so we don't need initialize appropriate coordinator one more time.
 
 # Coordinator
+
+## Summary
+
+If we are going to stick to one architecture, we must define several rules.
+
+**Rule #1 Create a Coordinator just if the module has child navigation. Do not need to create a coordinator if the module does not have nested navigation.**
+
+When we are talking about navigation we assume navigation is a push, pop, present, dismiss. All actions which look like navigation to somewhere.
+
+**Rule #2 Each coordinator must have a navigation controller.**
+
+The second rules are based on the first as each coordinator contains nested navigation it means that must have a navigation controller. Each coordinator has to be created with a parent navigation controller, and internally he can decide whether he wants to use the parent as his main navigation controller or wants to create a new one. (this will be implementation-dependent)
+
+## Coordinator structure
+
+All coordinators will be linked. Each coordinators knows about a parent coordinator and children coordinators. Beside main coordinator, as it has been created as first. In result this structure makes linked list. More detail has described below:
+
+```
+protocol Coordinator: class {
+  
+  var id: UUID { get }
+  
+  /// Reference on the parent coordinator
+  var parentCoordinator: Coordinator? { get set }
+  
+  /// References on the child coordinators
+  var childCoordinators: [UUID: WeakCoordinator] { get }
+  
+  /// `navigationController` in which all navigation for the current coordination takes place
+  var navigationController: UINavigationController { get }
+  
+  /// This method in which describe an implementation of how to present screen
+  /// - Parameters:
+  ///   - style: determinate how would be presented coordinator
+  ///   - animated: animated
+  func start(style: CoordinatorPresentationStyle, animated: Bool)
+  
+  /// Present child coordinator
+  /// - Parameters:
+  ///   - coordinator: child coordinator
+  ///   - style: determinate how would be presented coordinator
+  ///   - animated: animated
+  func start(coordinator: Coordinator, style: CoordinatorPresentationStyle, animated: Bool)
+  
+  /// Pop coordinator from stack. Removing the dependency for a parent and child coordinators
+  func stop()
+  
+  /// Remove child coordinator by id
+  func removeChild(by id: UUID)
+  
+}
+```
+
+## Coordinator presentation style
+
+Every first ViewController in a coordinator must be added to NavigationController and it can happen in a few ways. This options determined in enum **CoordinatorPresentationStyle**. Also, some of them can implement in the base implementation.
+
+**Note:** *This presentation relates only to a coordinator and does not relate to MVVM modules (without a coordinator). It describes how to be presented  base view controller of coordinator on a navigation controller.*
+
+```
+enum CoordinatorPresentationStyle {
+  
+   /// `custom` case using for custom presentation coordinator, in this case needs to override `start` method and describe needed presentation
+  case custom
+  
+  /// `setRoot` case added a ViewController in the root of the navigation stack
+  case setRoot
+  
+  /// `push` case added a ViewController in the end of the navigation stack
+  case push
+  
+  /// `presentSecondarySteck` case presents a ViewController in the new navigation, create new NavigationController with ViewController and present NavigationController
+  case presentSecondarySteck
+  
+}
+```
+
+### Example how to use:
+
+* Presentation a main coordinator
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101617135-ede89180-3a18-11eb-8e6e-c1b111e4ed4a.png">
+</div>
+
+```
+let coordinator = baseAssembly.makeMainCoordinator(with: navigation)
+mainCoordinator = coordinator
+mainCoordinator?.start(style: .setRoot, animated: false)
+```
+
+* Parent coordinator pushes a child coordinator
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101617134-ed4ffb00-3a18-11eb-9e44-fc338279ee8f.png">
+</div>
+
+```
+let coordinator = assembly.makeMoviesCoordinator(with: navigationController)
+start(coordinator: coordinator, style: .push)
+```
+
+* Parent coordinator presents a child coordinator in secondary stack
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101617131-ec1ece00-3a18-11eb-9b72-52f9121bc2d5.png">
+</div>
+
+```
+let coordinator = assembly.makeCounterCoordinator(with: navigationController, isDismissButtonHidden: true)
+start(coordinator: coordinator, style: .presentSecondarySteck)
+```
+
+* Parent coordinator needs to push a ViewController
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101617125-eb863780-3a18-11eb-9e95-16bdf0bfc769.png">
+</div>
+
+```
+let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: true, didChangeCount: didChangeCount)
+navigationController?.pushViewController(viewController, animated: true)
+```
+
+* Parent coordinator needs to present a ViewController
+<div align="center">
+<img src="https://user-images.githubusercontent.com/15180933/101617122-ea550a80-3a18-11eb-91b8-e5ee3933e8da.png">
+</div>
+
+```
+let viewController = factory.makeCounterDetailsController(with: self, count: count, isDismissButtonHidden: false, didChangeCount: didChangeCount)
+navigationController?.present(viewController, animated: true)
+```
+
+## Coordinator live cycle
+
+## Data passing between modules
 
 # UNIT Testing
 
